@@ -1,0 +1,32 @@
+# -*- coding: utf-8 -*-
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-02 11:33+0300\n"
+"Language: ru\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#: task_manager/templates/index.html:19
+msgid "Greetings from Danlo"
+msgstr ""
+
+#: task_manager/templates/navbar.html:11
+msgid "Tasks manager"
+msgstr "Менеджер задач"
+
+#: task_manager/templates/navbar.html:14
+msgid "Users"
+msgstr "Пользователи"
+
+#: task_manager/templates/navbar.html:17
+#, fuzzy
+#| msgid "Log in"
+msgid "Sig in"
+msgstr "Зарегистрироваться"
+
+#: task_manager/templates/navbar.html:20
+msgid "Log in"
+msgstr "Зарегистрироваться"
+
+#~ msgid "Sign in"
+#~ msgstr "Войти"

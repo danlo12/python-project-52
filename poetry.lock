@@ -53,6 +53,23 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-bootstrap5"
+version = "24.3"
+description = "Bootstrap 5 for Django"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "django_bootstrap5-24.3-py3-none-any.whl", hash = "sha256:98f7916f9f7f9c34dfe157f7c062a28ebf6d17ff95307bef260ba794ba34e2a0"},
+    {file = "django_bootstrap5-24.3.tar.gz", hash = "sha256:ca5ec5568fc2a3fc239f0cb8ce41a7df3802b8c4af930d7f64451784ec7ddc16"},
+]
+
+[package.dependencies]
+Django = ">=4.2"
+
+[package.extras]
+jinja = ["Jinja2 (>=3.0,<4)"]
+
+[[package]]
 name = "django-cors-headers"
 version = "4.4.0"
 description = "django-cors-headers is a Django application for handling the server headers required for Cross-Origin Resource Sharing (CORS)."
@@ -300,4 +317,4 @@ brotli = ["brotli"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "d8ef8bd8c0c74bf3099a55aba4a7d3b54f17f7419245b87a692e9022632ac1f7"
+content-hash = "878832f51257bc74a6b02121aca3b7a3d8c70088e0a739e8c2c3516fea43f692"
