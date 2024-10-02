@@ -2,31 +2,86 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-02 11:33+0300\n"
+"POT-Creation-Date: 2024-10-02 14:55+0300\n"
 "Language: ru\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+
+#: task_manager/models.py:9 task_manager/templates/user_create.html:40
+msgid "Your password must contain at least 3 characters."
+msgstr ""
+
+#: task_manager/models.py:13
+msgid "Passwords do not match."
+msgstr ""
+
+#: task_manager/models.py:17 task_manager/templates/user_create.html:32
+msgid ""
+"Enter a valid username. Only letters, numbers, and the symbols @/./+/-/_ are "
+"allowed."
+msgstr ""
 
 #: task_manager/templates/index.html:19
 msgid "Greetings from Danlo"
 msgstr ""
 
-#: task_manager/templates/navbar.html:11
+#: task_manager/templates/navbar.html:4
 msgid "Tasks manager"
 msgstr "Менеджер задач"
 
-#: task_manager/templates/navbar.html:14
+#: task_manager/templates/navbar.html:11 task_manager/templates/users.html:18
 msgid "Users"
 msgstr "Пользователи"
 
-#: task_manager/templates/navbar.html:17
-#, fuzzy
-#| msgid "Log in"
-msgid "Sig in"
-msgstr "Зарегистрироваться"
+#: task_manager/templates/navbar.html:14
+msgid "Sign in"
+msgstr "Войти"
 
-#: task_manager/templates/navbar.html:20
+#: task_manager/templates/navbar.html:17
+#: task_manager/templates/user_create.html:51
 msgid "Log in"
 msgstr "Зарегистрироваться"
 
-#~ msgid "Sign in"
-#~ msgstr "Войти"
+#: task_manager/templates/user_create.html:22
+#: task_manager/templates/user_create.html:23
+msgid "First name"
+msgstr ""
+
+#: task_manager/templates/user_create.html:26
+#: task_manager/templates/user_create.html:27
+msgid "Last name"
+msgstr ""
+
+#: task_manager/templates/user_create.html:30
+#: task_manager/templates/user_create.html:31
+#: task_manager/templates/users.html:23
+#, fuzzy
+#| msgid "Users"
+msgid "Username"
+msgstr "Пользователи"
+
+#: task_manager/templates/user_create.html:36
+#: task_manager/templates/user_create.html:37
+msgid "Password"
+msgstr ""
+
+#: task_manager/templates/user_create.html:46
+#: task_manager/templates/user_create.html:47
+msgid "Password confirmation"
+msgstr ""
+
+#: task_manager/templates/user_create.html:48
+msgid "Please re-enter your password for confirmation."
+msgstr ""
+
+#: task_manager/templates/users.html:24
+msgid "Full name"
+msgstr ""
+
+#: task_manager/templates/users.html:25
+msgid "Creation date"
+msgstr ""
+
+#, fuzzy
+#~| msgid "Log in"
+#~ msgid "Sig in"
+#~ msgstr "Зарегистрироваться"

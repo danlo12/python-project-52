@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load i18n %}
+<head>
+    {% load static %}
+    {% load django_bootstrap5 %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Navbar Static</title>
+    {% bootstrap_css %}
+</head>
+<body>
+    <!-- Подключаем шапку (navbar) -->
+    {% include 'navbar.html' %}
+
+    <!-- Основной контент -->
+    <div class="container wrapper flex grow-1">
+    <h1 class="my-4">{% trans "Users" %}</h1>
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>{% trans "Username" %}</th>
+            <th>{% trans "Full name" %}</th>
+            <th>{% trans "Creation date" %}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{user.id}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.first_name}} {{user.last_name}}</td>
+            <td>{{user.created_at}}</td>
+            <td>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    </div>
+    {% bootstrap_javascript %}
+</body>
+</html>

@@ -17,7 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from task_manager import views
 
+
 urlpatterns = [
     path('', views.index, name='home'),
+    path('users/', views.user_list, name='users'),
+    path('users/create/', views.user_create, name='user-create'),
+    path('login/',views.UserLoginView.as_view(),name='login'),
+    path('logout/', views.LogoutView.as_view(next_page='home'), name='logout'),
     path('admin/', admin.site.urls),
 ]

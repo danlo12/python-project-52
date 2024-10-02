@@ -1,25 +1,27 @@
 {% load i18n %}
 <nav class="navbar navbar-expand-md navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">MyApp</a>
+        <a class="navbar-brand" href="{% url 'home' %}">{% trans "Tasks manager" %}</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'home' %}">{% trans "Tasks manager" %}</a>
+                    <a class="nav-link" href="{% url 'users' %}">{% trans "Users" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">{% trans "Users" %}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">{% trans "Sign in" %}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">{% trans "Log in" %}</a>
+                    <a class="nav-link" href="{% url 'user-create' %}">{% trans "Log in" %}</a>
                 </li>
             </ul>
+            {% if user.is_authenticated %}
+                <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Log out</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}" >{% trans "Sign in" %}</a>
+            {% endif %}
         </div>
     </div>
 </nav>

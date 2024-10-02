@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load i18n %}
+<head>
+    {% load static %}
+    {% load django_bootstrap5 %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Navbar Static</title>
+    {% bootstrap_css %}
+</head>
+<body>
+    <!-- Подключаем шапку (navbar) -->
+    {% include 'navbar.html' %}
+
+    <!-- Основной контент -->
+    <div class="container mt-4">
+    <h1>{% trans "Sign in" %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">{% trans "Sign in" %}</button>
+    </form>
+    </div>
+
+    {% bootstrap_javascript %}
+</body>
+</html>
