@@ -24,6 +24,23 @@
             {% else %}
                 <a href="{% url 'login' %}" >{% trans "Log in" %}</a>
             {% endif %}
+            <div class="ms-auto">
+            {% get_current_language as CURRENT_LANGUAGE %}
+                {% if CURRENT_LANGUAGE == "ru" %}
+                    <form method="post" action="{% url 'set_language' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="language" value="en" />
+                        <button type="submit">English</button>
+                    </form>
+                {% elif CURRENT_LANGUAGE == "en" %}
+                <form method="post" action="{% url 'set_language' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="language" value="ru" />
+                    <button type="submit">Русский</button>
+                </form>
+                {% endif %}
+            </div>
+
         </div>
     </div>
 </nav>

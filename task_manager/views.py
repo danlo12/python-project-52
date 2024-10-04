@@ -6,7 +6,9 @@ from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.utils.translation import gettext_lazy
-
+from django.utils import translation
+from django.http import HttpResponseRedirect
+from django.conf import settings
 
 def index(request):
     return render(request,'index.html', context={'who':'Username',})
@@ -112,4 +114,5 @@ class UserDeleteView(DeleteView):
         context['username'] = user.username
 
         return context
+
 
