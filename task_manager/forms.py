@@ -25,3 +25,21 @@ class UserRegistrationForm(forms.ModelForm):
 class CustomLoginForm(AuthenticationForm):
     username = forms.CharField(max_length=150, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
+
+class UserUpdateForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput(), required=False)
+    password_check = forms.CharField(widget=forms.PasswordInput(), required=False)
+
+    class Meta:
+        model = CustomUser
+        fields = ['first_name', 'last_name', 'username', 'password']
+
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get('password')
+        password_check = cleaned_data.get('password_check')
+
+        if password and password != password_check:
+            raise ValidationError("Passwords do not match.")
+
+        return cleaned_data

@@ -2,84 +2,126 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-02 14:55+0300\n"
+"POT-Creation-Date: 2024-10-04 16:20+0300\n"
 "Language: ru\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 
-#: task_manager/models.py:9 task_manager/templates/user_create.html:40
-msgid "Your password must contain at least 3 characters."
-msgstr ""
-
-#: task_manager/models.py:13
+#: task_manager/forms.py:21 task_manager/models.py:13
 msgid "Passwords do not match."
-msgstr ""
+msgstr "Пароли не совпадают."
 
-#: task_manager/models.py:17 task_manager/templates/user_create.html:32
+#: task_manager/models.py:9 task_manager/templates/update.html:40
+#: task_manager/templates/user_create.html:40
+msgid "Your password must contain at least 3 characters."
+msgstr "Ваш пароль должен содержать не менее 3 символов."
+
+#: task_manager/models.py:17 task_manager/templates/update.html:32
+#: task_manager/templates/user_create.html:32
 msgid ""
 "Enter a valid username. Only letters, numbers, and the symbols @/./+/-/_ are "
 "allowed."
 msgstr ""
+"Введите допустимое имя пользователя. Разрешены только буквы, цифры и символы "
+"@/./+/-/_"
+
+#: task_manager/templates/confirm_delete.html:18
+msgid "Delete User"
+msgstr "Удаление Пользователя"
+
+#: task_manager/templates/confirm_delete.html:19
+msgid "Are you sure you want to delete "
+msgstr "Вы уверены что вы хотите удалить"
 
 #: task_manager/templates/index.html:19
 msgid "Greetings from Danlo"
 msgstr ""
 
+#: task_manager/templates/login.html:18 task_manager/templates/login.html:22
+#, fuzzy
+#| msgid "Sign up"
+msgid "Sign in"
+msgstr "Войти"
+
 #: task_manager/templates/navbar.html:4
 msgid "Tasks manager"
 msgstr "Менеджер задач"
 
-#: task_manager/templates/navbar.html:11 task_manager/templates/users.html:18
+#: task_manager/templates/navbar.html:11 task_manager/templates/users.html:19
 msgid "Users"
 msgstr "Пользователи"
 
-#: task_manager/templates/navbar.html:14
-msgid "Sign in"
-msgstr "Войти"
+#: task_manager/templates/navbar.html:15
+msgid "Sign up"
+msgstr "Зарегестироваться"
 
-#: task_manager/templates/navbar.html:17
+#: task_manager/templates/navbar.html:25 task_manager/templates/update.html:51
 #: task_manager/templates/user_create.html:51
 msgid "Log in"
-msgstr "Зарегистрироваться"
+msgstr "Войти"
 
+#: task_manager/templates/update.html:18
+msgid "Change user"
+msgstr "Иземенить пользователя"
+
+#: task_manager/templates/update.html:22 task_manager/templates/update.html:23
 #: task_manager/templates/user_create.html:22
 #: task_manager/templates/user_create.html:23
 msgid "First name"
-msgstr ""
+msgstr "Имя"
 
+#: task_manager/templates/update.html:26 task_manager/templates/update.html:27
 #: task_manager/templates/user_create.html:26
 #: task_manager/templates/user_create.html:27
 msgid "Last name"
-msgstr ""
+msgstr "Фамилия"
 
+#: task_manager/templates/update.html:30 task_manager/templates/update.html:31
 #: task_manager/templates/user_create.html:30
 #: task_manager/templates/user_create.html:31
-#: task_manager/templates/users.html:23
-#, fuzzy
-#| msgid "Users"
-msgid "Username"
-msgstr "Пользователи"
 
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: task_manager/templates/update.html:36 task_manager/templates/update.html:37
 #: task_manager/templates/user_create.html:36
 #: task_manager/templates/user_create.html:37
 msgid "Password"
-msgstr ""
+msgstr "Пароль"
 
+#: task_manager/templates/update.html:46 task_manager/templates/update.html:47
 #: task_manager/templates/user_create.html:46
 #: task_manager/templates/user_create.html:47
 msgid "Password confirmation"
-msgstr ""
+msgstr "Подтверждение пароля"
 
+#: task_manager/templates/update.html:48
 #: task_manager/templates/user_create.html:48
 msgid "Please re-enter your password for confirmation."
-msgstr ""
+msgstr "Пожалуйста, введите пароль еще раз для подтверждения."
 
-#: task_manager/templates/users.html:24
-msgid "Full name"
-msgstr ""
+#: task_manager/templates/user_create.html:18
+msgid "Registration"
+msgstr "Регистрация"
 
 #: task_manager/templates/users.html:25
+msgid "Full name"
+msgstr "Полное имя"
+
+#: task_manager/templates/users.html:26
 msgid "Creation date"
-msgstr ""
+msgstr "Дата создания"
+
+#: task_manager/templates/users.html:38
+msgid "Update"
+msgstr "Обновить"
+
+#: task_manager/templates/users.html:39
+msgid "Delete"
+msgstr "Удалить"
+
+#: task_manager/views.py:68 task_manager/views.py:97
+msgid "You do not have permission to edit another user."
+msgstr "У вас нет прав редактировать другого пользователя."
 
 #, fuzzy
 #~| msgid "Log in"
