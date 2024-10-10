@@ -10,10 +10,6 @@
     {% bootstrap_css %}
 </head>
 <body>
-    <!-- Подключаем шапку (navbar) -->
-
-
-    <!-- Основной контент -->
     <div class="container mt-4">
         <h1 class="my-4">{% trans 'Change user' %}</h1>
       <form action="{% url 'update' id=user_id %}" method="POST">
