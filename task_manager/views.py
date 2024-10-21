@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import CustomUser
+from .models import CustomUser, Status
 from .forms import UserRegistrationForm, CustomLoginForm, UserUpdateForm
 from django.contrib.auth.views import LoginView, LogoutView
-from django.views.generic.edit import UpdateView, DeleteView
+from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.utils.translation import gettext_lazy
+from django.views.generic import ListView
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 def index(request):
     return render(request,'index.html', context={'who':'Username',})
@@ -61,7 +64,7 @@ class UserUpdateView(UpdateView):
         user.save()
         return super().form_valid(form)
     def dispatch(self, request, *args, **kwargs):
-        user = get_object_or_404(CustomUser,id=self.kwargs['id'])
+        user = get_object_or_404(CustomUser,id=self.kwargs['pk'])
 
         if user.id != request.user.id:
             messages.error(request, gettext_lazy('You do not have permission to edit another user.'))
@@ -70,7 +73,7 @@ class UserUpdateView(UpdateView):
         return super().dispatch(request, *args, **kwargs)
 
     def get_object(self, queryset=None):
-        return CustomUser.objects.get(id=self.kwargs['id'])
+        return CustomUser.objects.get(id=self.kwargs['pk'])
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -111,5 +114,51 @@ class UserDeleteView(DeleteView):
         context['username'] = user.username
 
         return context
+
+class StatusesListView(ListView):
+    model = Status
+    template_name = 'statuses.html'
+    context_object_name = 'statuses'
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
+            return redirect('login')
+        return super().dispatch(request, *args, **kwargs)
+
+class StatusesCreateView(CreateView):
+    model = Status
+    template_name = 'status_create.html'
+    fields = ['name']
+    context_object_name = 'statuses'
+    success_url = reverse_lazy('statuses')
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
+            return redirect('login')
+        return super().dispatch(request, *args, **kwargs)
+
+
+class StatusesUpdateView(UpdateView):
+    model = Status
+    template_name = 'status_update.html'
+    fields = ['name']
+    success_url = reverse_lazy('statuses')
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
+            return redirect('login')
+        return super().dispatch(request, *args, **kwargs)
+
+class StatusesDeleteView(DeleteView):
+    model = Status
+    template_name = 'status_delete.html'
+    success_url = reverse_lazy('statuses')
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
+            return redirect('login')
+        return super().dispatch(request, *args, **kwargs)
+
+
 
 

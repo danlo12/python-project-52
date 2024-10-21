@@ -12,7 +12,7 @@
 <body>
     <div class="container mt-4">
         <h1 class="my-4">{% trans 'Change user' %}</h1>
-      <form action="{% url 'update' id=user_id %}" method="POST">
+      <form action="{% url 'update' pk=user_id %}" method="POST">
         {% csrf_token %}
         <div class="mb-3">
           <label class="form-label" for="id_first_name">{% trans 'First name' %}</label>

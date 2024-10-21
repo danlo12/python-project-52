@@ -15,6 +15,11 @@
                         <a class="nav-link" href="{% url 'user-create' %}">{% trans "Sign up" %}</a>
                     </li>
                 {% endif %}
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'statuses' %}">{% trans "Statuses" %}</a>
+                    </li>
+                {% endif %}
             </ul>
             {% if user.is_authenticated %}
                 <form action="{% url 'logout' %}" method="post" style="display:inline;">
@@ -22,7 +27,10 @@
                 <button type="submit">Log out</button>
                 </form>
             {% else %}
-                <a href="{% url 'login' %}" >{% trans "Log in" %}</a>
+                <form action="{% url 'login' %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">{% trans "Log in" %}</button>
+                </form>
             {% endif %}
             <div class="ms-auto">
             {% get_current_language as CURRENT_LANGUAGE %}
