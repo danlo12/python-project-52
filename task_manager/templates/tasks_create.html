@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load i18n %}
+<head>
+    {% load static %}
+    {% load django_bootstrap5 %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Navbar Static</title>
+    {% bootstrap_css %}
+</head>
+<body>
+    <!-- Основной контент -->
+    <div class="container mt-4">
+        <h1 class="my-4">{% trans 'Create tasks' %}</h1>
+      <form action="{% url 'tasks_create' %}" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label class="form-label" for="name">{% trans 'Name' %}</label>
+          <input type="text" name="name" maxlength="100" class="form-control" placeholder="{% trans 'Name' %}" required="" id="name">
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="description">{% trans 'Description' %}</label>
+          <textarea name="description" cols="40" rows="10" maxlength="500" class="form-control" placeholder="{% trans 'description' %}" required="" id="description"></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="status">{% trans 'Status' %}</label>
+          <select name="status" class="form-control" required="" id="status">
+              <option>-----------</option>
+              {% for status in statuses %}
+              <option value="{{ status.id }}">{{status.name}}</option>
+              {% endfor %}
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="performer">{% trans 'Performer' %}</label>
+          <select name="performer" class="form-control" required="" id="performer">
+              <option>-----------</option>
+              {% for performer in performers %}
+              <option value="{{ performer.id }}">{{performer.username}}</option>
+              {% endfor %}
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="labels">{% trans 'Label' %}</label>
+          <input type="text" name="labels" maxlength="100" class="form-control" placeholder="{% trans 'Label' %}" required="" id="labels">
+        </div>
+        <input class="btn btn-primary" type="submit" value="{% trans 'Create' %}">
+      </form>
+    </div>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load i18n %}
+<head>
+    {% load static %}
+    {% load django_bootstrap5 %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Navbar Static</title>
+    {% bootstrap_css %}
+</head>
+<body>
+    <!-- Подключаем шапку (navbar) -->
+    {% include 'navbar.html' %}
+
+    <!-- Основной контент -->
+    <div class="container wrapper flex-grow-1">
+        <h1>{% trans "Delete task" %}</h1>
+        <p>{% trans "Are you sure you want to delete " %} {{ task.name }}?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <input class="btn btn-danger" type="submit" value="{% trans 'Delete' %}">
+    </form>
+    <a href="{% url 'users' %}">{% trans 'Cancel' %}</a>
+    </div>
+
+    {% bootstrap_javascript %}
+</body>
+</html>

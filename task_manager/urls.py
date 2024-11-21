@@ -33,4 +33,10 @@ urlpatterns = [
     path('statuses/create/',views.StatusesCreateView.as_view(),name='status_create'),
     path('statuses/<int:pk>/update/',views.StatusesUpdateView.as_view(),name='status_update'),
     path('statuses/<int:pk>/delete/',views.StatusesDeleteView.as_view(),name='status_delete'),
+    path('tasks/',views.TasksListView.as_view(),name='tasks'),
+    path('tasks/create/',views.TasksCreateView.as_view(),name='tasks_create'),
+    path('tasks/<int:pk>/update/',views.TasksUpdateView.as_view(),name='tasks_update'),
+    path('tasks/<int:pk>/delete/',views.TasksDeleteView.as_view(),name='tasks_delete'),
+    path('tasks/<int:pk>/',views.TaskDetailView.as_view(),name='task_card'),
+
 ]

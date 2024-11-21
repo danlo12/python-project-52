@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import CustomUser, Status
+from .models import CustomUser, Status, Task
 from .forms import UserRegistrationForm, CustomLoginForm, UserUpdateForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
+from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.utils.translation import gettext_lazy
@@ -159,6 +160,66 @@ class StatusesDeleteView(DeleteView):
             return redirect('login')
         return super().dispatch(request, *args, **kwargs)
 
+class TasksListView(ListView):
+    model = Task
+    template_name = 'tasks.html'
+    context_object_name = 'tasks'
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
+            return redirect('login')
+        return super().dispatch(request, *args, **kwargs)
+
+class TasksCreateView(CreateView):
+    model = Task
+    template_name = 'tasks_create.html'
+    fields = ['name','description','status','performer','labels']
+    context_object_name = 'tasks'
+    success_url = reverse_lazy('tasks')
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
+            return redirect('login')
+        return super().dispatch(request, *args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['statuses'] = Status.objects.all()
+        context['performers'] = CustomUser.objects.all()
+        return context
+    def form_valid(self, form):
+        form.instance.creator = self.request.user
+        return super().form_valid(form)
 
 
+class TasksUpdateView(UpdateView):
+    model = Task
+    template_name = 'tasks_update.html'
+    fields = ['name','description','status','performer','labels']
+    context_object_name = 'tasks'
+    success_url = reverse_lazy('tasks')
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
+            return redirect('login')
+        return super().dispatch(request, *args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['statuses'] = Status.objects.all()
+        context['performers'] = CustomUser.objects.all()
+        return context
 
+class TasksDeleteView(DeleteView):
+    model = Task
+    template_name = 'tasks_delete.html'
+    success_url = reverse_lazy('tasks')
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
+            return redirect('login')
+        return super().dispatch(request, *args, **kwargs)
+
+
+class TaskDetailView(DetailView):
+    model = Task
+    template_name = 'task_card.html'
+    context_object_name = 'task'

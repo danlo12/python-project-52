@@ -16,26 +16,32 @@
     <!-- Основной контент -->
     {% include 'flash.html' %}
     <div class="container wrapper flex grow-1">
-    <h1 class="my-4">{% trans "Statuses" %}</h1>
-        <a class="btn btn-primary mb-3" href="{% url 'status_create'%}">{% trans "Create status" %}</a>
+    <h1 class="my-4">{% trans "Tasks" %}</h1>
+        <a class="btn btn-primary mb-3" href="{% url 'tasks_create'%}">{% trans "Create task" %}</a>
     <table class="table table-striped">
     <thead>
         <tr>
             <th>ID</th>
             <th>{% trans "Name"%}</th>
+            <th>{% trans "Status"%}</th>
+            <th>{% trans "Performer"%}</th>
+            <th>{% trans "Creator"%}</th>
             <th>{% trans "Creation date" %}</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        {% for status in statuses %}
+        {% for task in tasks %}
         <tr>
-            <td>{{status.id}}</td>
-            <td>{{status.name}}</td>
-            <td>{{status.created_at}}</td>
+            <td><a href="{% url 'task_card' pk=task.id %}">{{ task.id }}</a></td>
+            <td>{{task.name}}</td>
+            <td>{{task.status}}</td>
+            <td>{{task.performer}}</td>
+            <td>{{task.creator}}</td>
+            <td>{{task.created_at}}</td>
             <td>
-                <a class="nav-link" href="{% url 'status_update' pk=status.id %}">{% trans "Update" %}</a>
-                <a class="nav-link" href="{% url 'status_delete' pk=status.id %}">{% trans "Delete" %}</a>
+                <a class="nav-link" href="{% url 'tasks_update' pk=task.id %}">{% trans "Update" %}</a>
+                <a class="nav-link" href="{% url 'tasks_delete' pk=task.id %}">{% trans "Delete" %}</a>
             </td>
         </tr>
         {% endfor %}

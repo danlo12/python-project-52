@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load i18n %}
+<head>
+    {% load static %}
+    {% load django_bootstrap5 %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Navbar Static</title>
+    {% bootstrap_css %}
+</head>
+<body>
+    <!-- Подключаем шапку (navbar) -->
+    {% include 'navbar.html' %}
+
+    <!-- Основной контент -->
+    {% include 'flash.html' %}
+   <div class="container wrapper flex-grow-1">
+  <h1 class="my-4">
+    {% trans "Просмотр задачи" %}
+  </h1>
+
+  <div class="card">
+    <div class="card-header bg-secondary text-white">
+      <h2>{{ task.name }}</h2>
+    </div>
+    <div class="card-body bg-light">
+      <p>{{ task.description }}</p>
+      <hr>
+      <div class="container">
+        <div class="row p-1">
+          <div class="col">{% trans "Автор" %}</div>
+          <div class="col">{{ task.creator }}</div>
+        </div>
+        <div class="row p-1">
+          <div class="col">{% trans "Исполнитель" %}</div>
+          <div class="col">{{ task.performer }}</div>
+        </div>
+        <div class="row p-1">
+          <div class="col">{% trans "Статус" %}</div>
+          <div class="col">{{ task.status }}</div>
+        </div>
+        <div class="row p-1">
+          <div class="col">{% trans "Дата создания" %}</div>
+          <div class="col">{{ task.created_at|date:"d.m.Y H:i" }}</div>
+        </div>
+        <div class="row p-1">
+          <div class="col">
+            <h6>{% trans "Метки:" %}</h6>
+            <p>{{ task.labels }}</p>
+          </div>
+        </div>
+        <div class="row p-1">
+          <div class="col">
+            <a href="{% url 'tasks_update' pk=task.id %}">{% trans "Update" %}</a>
+            <br>
+            <a href="{% url 'tasks_delete' pk=task.id %}">{% trans "Delete" %}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
