@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load i18n %}
+<head>
+    {% load static %}
+    {% load django_bootstrap5 %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Navbar Static</title>
+    {% bootstrap_css %}
+</head>
+<body>
+    <!-- Подключаем шапку (navbar) -->
+    {% include 'navbar.html' %}
+
+    <!-- Основной контент -->
+    <div class="container mt-4">
+        <h1 class="my-4">{% trans 'Create label' %}</h1>
+      <form action="{% url 'label_update' pk=label.id %}" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label class="form-label" for="name">{% trans 'Name' %}</label>
+          <input type="text" name="name" maxlength="100" class="form-control" placeholder="{% trans 'Name' %}" required="" id="name">
+        </div>
+        <input class="btn btn-primary" type="submit" value="{% trans 'Update' %}">
+      </form>
+    </div>

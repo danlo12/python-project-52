@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import CustomUser, Status, Task
+from .models import CustomUser, Status, Task, Label
 from .forms import UserRegistrationForm, CustomLoginForm, UserUpdateForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
@@ -184,10 +184,12 @@ class TasksCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['statuses'] = Status.objects.all()
+        context['labels'] = Label.objects.all()
         context['performers'] = CustomUser.objects.all()
         return context
     def form_valid(self, form):
         form.instance.creator = self.request.user
+        print(self.request.POST.getlist('labels'))
         return super().form_valid(form)
 
 
@@ -205,6 +207,7 @@ class TasksUpdateView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['statuses'] = Status.objects.all()
+        context['labels'] = Label.objects.all()
         context['performers'] = CustomUser.objects.all()
         return context
 
@@ -212,10 +215,13 @@ class TasksDeleteView(DeleteView):
     model = Task
     template_name = 'tasks_delete.html'
     success_url = reverse_lazy('tasks')
+
     def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
-            return redirect('login')
+        task = get_object_or_404(Task, id=self.kwargs['pk'])
+
+        if task.creator.id != request.user.id:
+            messages.error(request, gettext_lazy('You do not have permission to edit this task.'))
+            return redirect('tasks')
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -223,3 +229,51 @@ class TaskDetailView(DetailView):
     model = Task
     template_name = 'task_card.html'
     context_object_name = 'task'
+
+class LabelsListView(ListView):
+    model = Label
+    template_name = 'labels.html'
+    context_object_name = 'labels'
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
+            return redirect('login')
+        return super().dispatch(request, *args, **kwargs)
+
+class LabelsCreateView(CreateView):
+    model = Label
+    template_name = 'label_create.html'
+    fields = ['name']
+    context_object_name = 'labels'
+    success_url = reverse_lazy('labels')
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
+            return redirect('login')
+        return super().dispatch(request, *args, **kwargs)
+
+
+class LabelsUpdateView(UpdateView):
+    model = Label
+    template_name = 'label_update.html'
+    fields = ['name']
+    success_url = reverse_lazy('labels')
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
+            return redirect('login')
+        return super().dispatch(request, *args, **kwargs)
+
+class LabelsDeleteView(DeleteView):
+    model = Label
+    template_name = 'label_delete.html'
+    success_url = reverse_lazy('labels')
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
+            return redirect('login')
+        label = self.get_object()
+        if label.task_set.exists():
+            messages.error(request, gettext_lazy('Cannot delete label because it is associated with tasks.'))
+            return redirect('labels')
+        return super().dispatch(request, *args, **kwargs)

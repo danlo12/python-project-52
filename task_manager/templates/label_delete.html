@@ -15,13 +15,13 @@
 
     <!-- Основной контент -->
     <div class="container wrapper flex-grow-1">
-        <h1>{% trans "Delete status" %}</h1>
-        <p>{% trans "Are you sure you want to delete " %} {{ status.name }}?</p>
+        <h1>{% trans "Delete label" %}</h1>
+        <p>{% trans "Are you sure you want to delete " %} {{ label.name }}?</p>
     <form method="POST">
         {% csrf_token %}
         <input class="btn btn-danger" type="submit" value="{% trans 'Delete' %}">
     </form>
-    <a href="{% url 'statuses' %}">{% trans 'Cancel' %}</a>
+    <a href="{% url 'labels' %}">{% trans 'Cancel' %}</a>
     </div>
 
     {% bootstrap_javascript %}
