@@ -13,11 +13,60 @@
     <!-- Подключаем шапку (navbar) -->
     {% include 'navbar.html' %}
 
+
+
     <!-- Основной контент -->
     {% include 'flash.html' %}
     <div class="container wrapper flex grow-1">
     <h1 class="my-4">{% trans "Tasks" %}</h1>
         <a class="btn btn-primary mb-3" href="{% url 'tasks_create'%}">{% trans "Create task" %}</a>
+    <form method="get" class="mb-3">
+        <div class="row">
+            <div class="col">
+                <label for="status">{% trans "Status" %}</label>
+                <select name="status" id="status" class="form-select">
+                    <option value="">{% trans "All" %}</option>
+                    {% for status in statuses %}
+                        <option value="{{ status }}">
+                            {{ status }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col">
+                <label for="performer">{% trans "Performer" %}</label>
+                <select name="performer" id="performer" class="form-select">
+                    <option value="">{% trans "All" %}</option>
+                    {% for performer in performers %}
+                        <option value="{{ performer }}" {% if performer == current_filters.performer %}selected{% endif %}>
+                            {{ performer }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col">
+                <label for="label">{% trans "Label" %}</label>
+                <select name="label" id="label" class="form-select">
+                    <option value="">{% trans "All" %}</option>
+                    {% for label in labels %}
+                        <option value="{{ label }}" {% if label == current_filters.label %}selected{% endif %}>
+                            {{ label }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="form-check mt-3">
+            <input type="checkbox" name="my_tasks" id="my_tasks" class="form-check-input">
+            <label for="my_tasks" class="form-check-label">{% trans "Only your tasks" %}</label>
+        </div>
+
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">{% trans "Filter" %}</button>
+            <a href="{% url 'tasks' %}" class="btn btn-outline-danger">{% trans "Clear filters" %}</a>
+        </div>
+
     <table class="table table-striped">
     <thead>
         <tr>

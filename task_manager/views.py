@@ -1,3 +1,5 @@
+from cProfile import label
+
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import CustomUser, Status, Task, Label
 from .forms import UserRegistrationForm, CustomLoginForm, UserUpdateForm
@@ -8,6 +10,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.utils.translation import gettext_lazy
 from django.views.generic import ListView
+from .filters import TaskFilter
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
@@ -164,11 +167,46 @@ class TasksListView(ListView):
     model = Task
     template_name = 'tasks.html'
     context_object_name = 'tasks'
+    filterset_class = TaskFilter
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
             return redirect('login')
         return super().dispatch(request, *args, **kwargs)
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        status = self.request.GET.get('status')
+        performer = self.request.GET.get('performer')
+        label = self.request.GET.get('label')
+        my_tasks = self.request.GET.get('my_tasks')
+
+        if status:
+            queryset = queryset.filter(status__name=status)
+        if performer:
+            queryset = queryset.filter(performer__username=performer)
+        if label:
+            queryset = queryset.filter(label=label)
+        if my_tasks == "on":
+            queryset = queryset.filter(creator=self.request.user)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+            # Добавляем данные для фильтров
+        context['statuses'] = Task.objects.values_list('status__name', flat=True).distinct()
+        context['performers'] = Task.objects.values_list('performer__username', flat=True).distinct()
+        context['labels'] = Task.objects.values_list('labels__name', flat=True).distinct()
+
+            # Передаем текущие фильтры в шаблон для сохранения состояния
+        context['current_filters'] = {
+            'status': self.request.GET.get('status', ''),
+            'performer': self.request.GET.get('performer', ''),
+            'label': self.request.GET.get('label', ''),
+            'my_tasks': self.request.GET.get('my_tasks', ''),
+        }
+        return context
 
 class TasksCreateView(CreateView):
     model = Task
@@ -191,6 +229,7 @@ class TasksCreateView(CreateView):
         form.instance.creator = self.request.user
         print(self.request.POST.getlist('labels'))
         return super().form_valid(form)
+
 
 
 class TasksUpdateView(UpdateView):
