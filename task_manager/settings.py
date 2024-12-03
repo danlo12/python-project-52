@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 
 import dj_database_url
+import rollbar
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,7 +29,7 @@ load_dotenv()
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 DATABASE_URL = os.getenv('DATABASE_URL')
-
+ACCESS_TOKEN = os.getenv('ACCESS_TOKEN')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -61,11 +62,13 @@ MIDDLEWARE = [
 ]
 
 ROLLBAR = {
-    'access_token': 'f13cdf0ecdaf4193aa11c11107c8c7f8',
+    'access_token': ACCESS_TOKEN,
     'environment': 'development' if DEBUG else 'production',
     'code_version': '1.0',
     'root': BASE_DIR,
 }
+
+rollbar.init(**ROLLBAR)
 
 ROOT_URLCONF = 'task_manager.urls'
 
