@@ -6,3 +6,4 @@ gunicorn==20.1
 django-cors-headers==4.4.0
 whitenoise==6.4
 django-filter==24.3
+rollbar ==1.1.0
