@@ -68,8 +68,6 @@ ROLLBAR = {
     'root': BASE_DIR,
 }
 
-rollbar.init(**ROLLBAR)
-
 ROOT_URLCONF = 'task_manager.urls'
 
 TEMPLATES = [
