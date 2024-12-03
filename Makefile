@@ -6,3 +6,6 @@ start:
 
 local:
 	python manage.py runserver
+
+lint:
+	ruff check .

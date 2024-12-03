@@ -1,8 +1,10 @@
 from django import forms
-from .models import CustomUser
-from django.utils.translation import gettext_lazy
-from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import AuthenticationForm
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy
+
+from .models import CustomUser
+
 
 class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)

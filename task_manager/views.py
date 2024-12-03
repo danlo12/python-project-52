@@ -1,18 +1,16 @@
-from cProfile import label
-
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import CustomUser, Status, Task, Label
-from .forms import UserRegistrationForm, CustomLoginForm, UserUpdateForm
-from django.contrib.auth.views import LoginView, LogoutView
-from django.views.generic.edit import UpdateView, DeleteView, CreateView
-from django.views.generic.detail import DetailView
-from django.urls import reverse_lazy
 from django.contrib import messages
+from django.contrib.auth.views import LoginView, LogoutView
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
 from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
+
 from .filters import TaskFilter
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
+from .forms import CustomLoginForm, UserRegistrationForm, UserUpdateForm
+from .models import CustomUser, Label, Status, Task
+
 
 def index(request):
     return render(request,'index.html', context={'who':'Username',})

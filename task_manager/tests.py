@@ -1,7 +1,9 @@
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
-from task_manager.models import CustomUser , Status, Label, Task
-from django.contrib.auth import get_user_model
+
+from task_manager.models import CustomUser, Label, Status, Task
+
 
 class UserRegistrationTest(TestCase):
     def test_register_user(self):
