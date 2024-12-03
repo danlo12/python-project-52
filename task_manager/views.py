@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.http import HttpResponse
 
 from .filters import TaskFilter
 from .forms import CustomLoginForm, UserRegistrationForm, UserUpdateForm
@@ -13,7 +14,10 @@ from .models import CustomUser, Label, Status, Task
 
 
 def index(request):
-    return render(request,'index.html', context={'who':'Username',})
+    a = None
+    a.hello()  # Creating an error with an invalid line of code
+    return HttpResponse("Hello, world. You're at the pollapp index.")
+    #return render(request,'index.html', context={'who':'Username',})
 
 def user_list(request):
     users = CustomUser.objects.all()
