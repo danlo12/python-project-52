@@ -20,6 +20,7 @@ django-bootstrap5 = "^24.3"
 django-filter = "^24.3"
 rollbar = "^1.1.0"
 
+
 [tool.ruff]
 src = ["."]
 line-length = 300
