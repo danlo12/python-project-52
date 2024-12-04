@@ -17,7 +17,7 @@
     {% include 'flash.html' %}
     <div class="container mt-4">
     <h1>{% trans "Sign in" %}</h1>
-    <form method="post">
+    <form action="{% url 'login' %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">{% trans "Sign in" %}</button>

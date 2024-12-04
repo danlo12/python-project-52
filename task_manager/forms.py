@@ -25,8 +25,15 @@ class UserRegistrationForm(forms.ModelForm):
         return cleaned_data
 
 class CustomLoginForm(AuthenticationForm):
-    username = forms.CharField(max_length=150, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
+    username = forms.CharField(
+        max_length=150,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': gettext_lazy('Username')}),
+        label=gettext_lazy('Username')  # Перевод метки поля
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': gettext_lazy('Password')}),
+        label=gettext_lazy('Password')  # Перевод метки поля
+    )
 
 class UserUpdateForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(), required=False)

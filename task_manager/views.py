@@ -6,11 +6,14 @@ from django.utils.translation import gettext_lazy
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+import logging
 
 from .filters import TaskFilter
 from .forms import CustomLoginForm, UserRegistrationForm, UserUpdateForm
 from .models import CustomUser, Label, Status, Task
 
+
+logger = logging.getLogger(__name__)
 
 def index(request):
     return render(request,'index.html', context={'who':'Username',})
@@ -46,6 +49,13 @@ class UserLoginView(LoginView):
     template_name = 'login.html'
     form_class = CustomLoginForm
     success_url = reverse_lazy('home')
+
+    def form_invalid(self, form):
+        for field in form.errors:
+            for error in form.errors[field]:
+                messages.error(self.request, f"{error}")
+        return super().form_invalid(form)
+
 
 class UserLogoutView(LogoutView):
     next_page = reverse_lazy('home')

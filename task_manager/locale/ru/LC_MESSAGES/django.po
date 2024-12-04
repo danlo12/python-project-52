@@ -1,44 +1,147 @@
-# -*- coding: utf-8 -*-
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
 msgid ""
 msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-04 16:20+0300\n"
-"Language: ru\n"
+"POT-Creation-Date: 2024-12-04 11:21+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+#: task_manager/filters.py:11 task_manager/templates/tasks.html:62
+msgid "Only your tasks"
+msgstr "Только мои задачи"
 
-#: task_manager/forms.py:21 task_manager/models.py:13
+#: task_manager/forms.py:23 task_manager/models.py:14
 msgid "Passwords do not match."
-msgstr "Пароли не совпадают."
+msgstr "Пароль не подходит"
 
-#: task_manager/models.py:9 task_manager/templates/update.html:40
-#: task_manager/templates/user_create.html:40
-msgid "Your password must contain at least 3 characters."
-msgstr "Ваш пароль должен содержать не менее 3 символов."
-
-#: task_manager/models.py:17 task_manager/templates/update.html:32
+#: task_manager/forms.py:30 task_manager/forms.py:31
+#: task_manager/templates/update.html:28 task_manager/templates/update.html:29
+#: task_manager/templates/user_create.html:31
 #: task_manager/templates/user_create.html:32
+#: task_manager/templates/users.html:24
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: task_manager/forms.py:34 task_manager/forms.py:35
+#: task_manager/templates/update.html:34 task_manager/templates/update.html:35
+#: task_manager/templates/user_create.html:37
+#: task_manager/templates/user_create.html:38
+msgid "Password"
+msgstr "Пароль"
+
+#: task_manager/models.py:10 task_manager/templates/update.html:38
+#: task_manager/templates/user_create.html:41
+msgid "Your password must contain at least 3 characters."
+msgstr "Ваш пароль должен быть больше 3х символов"
+
+#: task_manager/models.py:18 task_manager/templates/update.html:30
+#: task_manager/templates/user_create.html:33
 msgid ""
 "Enter a valid username. Only letters, numbers, and the symbols @/./+/-/_ are "
 "allowed."
-msgstr ""
-"Введите допустимое имя пользователя. Разрешены только буквы, цифры и символы "
-"@/./+/-/_"
+msgstr "Введите корректное имя пользователя. Разрешены только буквы, цифры и символы @/./+/-/_"
 
 #: task_manager/templates/confirm_delete.html:18
 msgid "Delete User"
-msgstr "Удаление Пользователя"
+msgstr "Удалить пользователя"
 
 #: task_manager/templates/confirm_delete.html:19
+#: task_manager/templates/label_delete.html:19
+#: task_manager/templates/status_delete.html:19
+#: task_manager/templates/tasks_delete.html:19
 msgid "Are you sure you want to delete "
-msgstr "Вы уверены что вы хотите удалить"
+msgstr "Вы уверены что хотите удалить "
+
+#: task_manager/templates/confirm_delete.html:22
+#: task_manager/templates/label_delete.html:22
+#: task_manager/templates/labels.html:38
+#: task_manager/templates/status_delete.html:22
+#: task_manager/templates/statuses.html:38
+#: task_manager/templates/task_card.html:57
+#: task_manager/templates/tasks.html:93
+#: task_manager/templates/tasks_delete.html:22
+#: task_manager/templates/users.html:39
+msgid "Delete"
+msgstr "Удалить"
 
 #: task_manager/templates/index.html:19
 msgid "Greetings from Danlo"
 msgstr ""
 
-#: task_manager/templates/login.html:18 task_manager/templates/login.html:22
-#, fuzzy
-#| msgid "Sign up"
+#: task_manager/templates/label_create.html:18
+#: task_manager/templates/label_update.html:18
+#: task_manager/templates/labels.html:20
+msgid "Create label"
+msgstr "Создать метку"
+
+#: task_manager/templates/label_create.html:22
+#: task_manager/templates/label_create.html:23
+#: task_manager/templates/label_update.html:22
+#: task_manager/templates/label_update.html:23
+#: task_manager/templates/labels.html:25
+#: task_manager/templates/status_create.html:22
+#: task_manager/templates/status_create.html:23
+#: task_manager/templates/status_update.html:22
+#: task_manager/templates/status_update.html:23
+#: task_manager/templates/statuses.html:25 task_manager/templates/tasks.html:74
+#: task_manager/templates/tasks_create.html:22
+#: task_manager/templates/tasks_create.html:23
+#: task_manager/templates/tasks_update.html:21
+#: task_manager/templates/tasks_update.html:22
+msgid "Name"
+msgstr "Имя"
+
+#: task_manager/templates/label_create.html:25
+#: task_manager/templates/status_create.html:25
+#: task_manager/templates/tasks_create.html:53
+#: task_manager/templates/tasks_update.html:50
+msgid "Create"
+msgstr "Создать"
+
+#: task_manager/templates/label_delete.html:18
+msgid "Delete label"
+msgstr "Удалить метку"
+
+#: task_manager/templates/label_delete.html:24
+#: task_manager/templates/status_delete.html:24
+#: task_manager/templates/tasks_delete.html:24
+msgid "Cancel"
+msgstr "Отмена"
+
+#: task_manager/templates/label_update.html:25
+#: task_manager/templates/labels.html:37
+#: task_manager/templates/status_update.html:25
+#: task_manager/templates/statuses.html:37
+#: task_manager/templates/task_card.html:55
+#: task_manager/templates/tasks.html:92 task_manager/templates/users.html:38
+msgid "Update"
+msgstr "Обновить"
+
+#: task_manager/templates/labels.html:19 task_manager/templates/navbar.html:23
+#: task_manager/templates/task_card.html:48
+msgid "Labels"
+msgstr "Метки"
+
+#: task_manager/templates/labels.html:26
+#: task_manager/templates/statuses.html:26 task_manager/templates/tasks.html:78
+#: task_manager/templates/users.html:26
+msgid "Creation date"
+msgstr "Дата создания"
+
+#: task_manager/templates/login.html:19 task_manager/templates/login.html:23
 msgid "Sign in"
 msgstr "Войти"
 
@@ -52,78 +155,161 @@ msgstr "Пользователи"
 
 #: task_manager/templates/navbar.html:15
 msgid "Sign up"
-msgstr "Зарегестироваться"
+msgstr "Зарегистироваться"
 
-#: task_manager/templates/navbar.html:25 task_manager/templates/update.html:51
-#: task_manager/templates/user_create.html:51
+#: task_manager/templates/navbar.html:20
+#: task_manager/templates/statuses.html:19
+msgid "Statuses"
+msgstr "Статусы"
+
+#: task_manager/templates/navbar.html:26 task_manager/templates/tasks.html:21
+msgid "Tasks"
+msgstr "Задачи"
+
+#: task_manager/templates/navbar.html:33
+msgid "Log out"
+msgstr "Выход"
+
+#: task_manager/templates/navbar.html:37 task_manager/templates/update.html:49
+#: task_manager/templates/user_create.html:52
 msgid "Log in"
-msgstr "Войти"
+msgstr "Вход"
 
-#: task_manager/templates/update.html:18
+#: task_manager/templates/status_create.html:18
+#: task_manager/templates/status_update.html:18
+#: task_manager/templates/statuses.html:20
+msgid "Create status"
+msgstr "Создать статус"
+
+#: task_manager/templates/status_delete.html:18
+msgid "Delete status"
+msgstr "Удалить статус"
+
+#: task_manager/templates/task_card.html:20
+msgid "Task"
+msgstr "Задача"
+
+#: task_manager/templates/task_card.html:32
+#: task_manager/templates/tasks.html:77
+msgid "Creator"
+msgstr "Создатель"
+
+#: task_manager/templates/task_card.html:36
+#: task_manager/templates/tasks.html:37 task_manager/templates/tasks.html:76
+#: task_manager/templates/tasks_create.html:39
+#: task_manager/templates/tasks_update.html:38
+msgid "Performer"
+msgstr "Исполнитель"
+
+#: task_manager/templates/task_card.html:40
+#: task_manager/templates/tasks.html:26 task_manager/templates/tasks.html:75
+#: task_manager/templates/tasks_create.html:30
+#: task_manager/templates/tasks_update.html:29
+msgid "Status"
+msgstr "Статус"
+
+#: task_manager/templates/task_card.html:44
+msgid "Created at"
+msgstr "Дата создания"
+
+#: task_manager/templates/tasks.html:22
+msgid "Create task"
+msgstr "Создать задачу"
+
+#: task_manager/templates/tasks.html:28 task_manager/templates/tasks.html:39
+#: task_manager/templates/tasks.html:50
+msgid "All"
+msgstr "Все"
+
+#: task_manager/templates/tasks.html:48
+#: task_manager/templates/tasks_create.html:47
+#: task_manager/templates/tasks_update.html:47
+#: task_manager/templates/tasks_update.html:48
+msgid "Label"
+msgstr "Метка"
+
+#: task_manager/templates/tasks.html:66
+msgid "Filter"
+msgstr "Фильтр"
+
+#: task_manager/templates/tasks.html:67
+msgid "Clear filters"
+msgstr "Отчистить фильтр"
+
+#: task_manager/templates/tasks_create.html:18
+msgid "Create tasks"
+msgstr "Создать задачу"
+
+#: task_manager/templates/tasks_create.html:26
+#: task_manager/templates/tasks_update.html:25
+msgid "Description"
+msgstr "Описание"
+
+#: task_manager/templates/tasks_create.html:27
+#: task_manager/templates/tasks_update.html:26
+msgid "description"
+msgstr "описание"
+
+#: task_manager/templates/tasks_delete.html:18
+msgid "Delete task"
+msgstr "Удалить задачу"
+
+#: task_manager/templates/tasks_update.html:17
+msgid "Update tasks"
+msgstr "Обновить задачу"
+
+#: task_manager/templates/update.html:16
 msgid "Change user"
-msgstr "Иземенить пользователя"
+msgstr "Изменить пользователя"
 
-#: task_manager/templates/update.html:22 task_manager/templates/update.html:23
-#: task_manager/templates/user_create.html:22
+#: task_manager/templates/update.html:20 task_manager/templates/update.html:21
 #: task_manager/templates/user_create.html:23
+#: task_manager/templates/user_create.html:24
 msgid "First name"
 msgstr "Имя"
 
-#: task_manager/templates/update.html:26 task_manager/templates/update.html:27
-#: task_manager/templates/user_create.html:26
+#: task_manager/templates/update.html:24 task_manager/templates/update.html:25
 #: task_manager/templates/user_create.html:27
+#: task_manager/templates/user_create.html:28
 msgid "Last name"
 msgstr "Фамилия"
 
-#: task_manager/templates/update.html:30 task_manager/templates/update.html:31
-#: task_manager/templates/user_create.html:30
-#: task_manager/templates/user_create.html:31
-
-msgid "Username"
-msgstr "Имя пользователя"
-
-#: task_manager/templates/update.html:36 task_manager/templates/update.html:37
-#: task_manager/templates/user_create.html:36
-#: task_manager/templates/user_create.html:37
-msgid "Password"
-msgstr "Пароль"
-
-#: task_manager/templates/update.html:46 task_manager/templates/update.html:47
-#: task_manager/templates/user_create.html:46
+#: task_manager/templates/update.html:44 task_manager/templates/update.html:45
 #: task_manager/templates/user_create.html:47
+#: task_manager/templates/user_create.html:48
 msgid "Password confirmation"
 msgstr "Подтверждение пароля"
 
-#: task_manager/templates/update.html:48
-#: task_manager/templates/user_create.html:48
+#: task_manager/templates/update.html:46
+#: task_manager/templates/user_create.html:49
 msgid "Please re-enter your password for confirmation."
-msgstr "Пожалуйста, введите пароль еще раз для подтверждения."
+msgstr "Пожалуйста, еще раз введите свой пароль для подтверждения."
 
-#: task_manager/templates/user_create.html:18
+#: task_manager/templates/user_create.html:19
 msgid "Registration"
-msgstr "Регистрация"
+msgstr "Регистрировать"
 
 #: task_manager/templates/users.html:25
 msgid "Full name"
 msgstr "Полное имя"
 
-#: task_manager/templates/users.html:26
-msgid "Creation date"
-msgstr "Дата создания"
-
-#: task_manager/templates/users.html:38
-msgid "Update"
-msgstr "Обновить"
-
-#: task_manager/templates/users.html:39
-msgid "Delete"
-msgstr "Удалить"
-
-#: task_manager/views.py:68 task_manager/views.py:97
+#: task_manager/views.py:82 task_manager/views.py:111
 msgid "You do not have permission to edit another user."
-msgstr "У вас нет прав редактировать другого пользователя."
+msgstr "У вас нет разрешения на редактирование другого пользователя"
 
-#, fuzzy
-#~| msgid "Log in"
-#~ msgid "Sig in"
-#~ msgstr "Зарегистрироваться"
+#: task_manager/views.py:136 task_manager/views.py:148
+#: task_manager/views.py:160 task_manager/views.py:170
+#: task_manager/views.py:181 task_manager/views.py:227
+#: task_manager/views.py:251 task_manager/views.py:286
+#: task_manager/views.py:298 task_manager/views.py:310
+#: task_manager/views.py:320
+msgid "You need to be logged in to perform this action."
+msgstr "Вам необходимо войти в систему, чтобы выполнить это действие."
+
+#: task_manager/views.py:270
+msgid "You do not have permission to edit this task."
+msgstr "У вас нет разрешения на редактирование этой задачи."
+
+#: task_manager/views.py:324
+msgid "Cannot delete label because it is associated with tasks."
+msgstr "Невозможно удалить метку, поскольку она связана с задачами."

@@ -30,11 +30,10 @@
             {% if user.is_authenticated %}
                 <form action="{% url 'logout' %}" method="post" style="display:inline;">
                 {% csrf_token %}
-                <button type="submit">Log out</button>
+                <button type="submit">{% trans "Log out" %}</button>
                 </form>
             {% else %}
                 <form action="{% url 'login' %}" method="get" style="display:inline;">
-                {% csrf_token %}
                 <button type="submit">{% trans "Log in" %}</button>
                 </form>
             {% endif %}
