@@ -13,21 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf.urls.i18n import set_language
-from django.contrib import admin
 from django.urls import include, path
 
-from task_manager import views
+from task_manager.users import views
 
 urlpatterns = [
-    path('set-language/', set_language, name='set_language'),
-    path('', views.index, name='home'),
-    path('login/', views.UserLoginView.as_view(), name='login'),
-    path('logout/', views.UserLogoutView.as_view(), name='logout'),
-    path('admin/', admin.site.urls),
-    path('users/', include('task_manager.users.urls')),
-    path('statuses/',include('task_manager.statuses.urls')),
-    path('labels/',include('task_manager.labels.urls')),
-    path('tasks/',include('task_manager.tasks.urls')),
-    path("i18n/", include("django.conf.urls.i18n")),
+    path('', views.user_list, name='users'),
+    path('create/', views.user_create, name='user-create'),
+    path('<int:pk>/update/',views.UserUpdateView.as_view(),name='update'),
+    path('<int:pk>/delete/', views.UserDeleteView.as_view(), name='delete_user'),
 ]

@@ -17,17 +17,12 @@ from django.conf.urls.i18n import set_language
 from django.contrib import admin
 from django.urls import include, path
 
-from task_manager import views
+from task_manager.statuses import views
 
 urlpatterns = [
-    path('set-language/', set_language, name='set_language'),
-    path('', views.index, name='home'),
-    path('login/', views.UserLoginView.as_view(), name='login'),
-    path('logout/', views.UserLogoutView.as_view(), name='logout'),
-    path('admin/', admin.site.urls),
-    path('users/', include('task_manager.users.urls')),
-    path('statuses/',include('task_manager.statuses.urls')),
-    path('labels/',include('task_manager.labels.urls')),
-    path('tasks/',include('task_manager.tasks.urls')),
-    path("i18n/", include("django.conf.urls.i18n")),
+    path('',views.StatusesListView.as_view(),name='statuses'),
+    path('create/',views.StatusesCreateView.as_view(),name='status_create'),
+    path('<int:pk>/update/',views.StatusesUpdateView.as_view(),name='status_update'),
+    path('<int:pk>/delete/',views.StatusesDeleteView.as_view(),name='status_delete'),
+
 ]

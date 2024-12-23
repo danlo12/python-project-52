@@ -1,7 +1,7 @@
 import django_filters
 from django.utils.translation import gettext_lazy
 
-from .models import Task
+from .tasks.models import Task
 
 
 class TaskFilter(django_filters.FilterSet):
