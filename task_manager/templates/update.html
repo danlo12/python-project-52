@@ -14,19 +14,19 @@
     {% include 'flash.html' %}
     <div class="container mt-4">
         <h1 class="my-4">{% trans 'Change user' %}</h1>
-      <form action="{% url 'update' pk=user_id %}" method="POST">
+      <form action="{% url 'update' pk=user.id %}" method="POST">
         {% csrf_token %}
         <div class="mb-3">
           <label class="form-label" for="id_first_name">{% trans 'First name' %}</label>
-          <input type="text" name="first_name" value="{{ first_name }}" maxlength="150" class="form-control" placeholder="{% trans 'First name' %}" required="" id="id_first_name">
+          <input type="text" name="first_name" value="{{ user.first_name }}" maxlength="150" class="form-control" placeholder="{% trans 'First name' %}" required="" id="id_first_name">
         </div>
         <div class="mb-3">
           <label class="form-label" for="id_last_name">{% trans 'Last name' %}</label>
-          <input type="text" name="last_name" value="{{ last_name }}" maxlength="150" class="form-control" placeholder="{% trans 'Last name' %}" required="" id="id_last_name">
+          <input type="text" name="last_name" value="{{ user.last_name }}" maxlength="150" class="form-control" placeholder="{% trans 'Last name' %}" required="" id="id_last_name">
         </div>
         <div class="mb-3">
           <label class="form-label" for="id_username">{% trans 'Username' %}</label>
-          <input type="text" name="username" value="{{ username }}" maxlength="150" class="form-control" placeholder="{% trans 'Username' %}" required="" id="id_username">
+          <input type="text" name="username" value="{{ user.username }}" maxlength="150" class="form-control" placeholder="{% trans 'Username' %}" required="" id="id_username">
             <div class="form-text">{% trans 'Enter a valid username. Only letters, numbers, and the symbols @/./+/-/_ are allowed.' %}</div>
         </div>
 

@@ -17,52 +17,60 @@ from .models import CustomUser
 
 logger = logging.getLogger(__name__)
 
-def user_list(request):
-    users = CustomUser.objects.all()
-    user_id = request.user.id if request.user.is_authenticated else None
-    return render(request,'users.html',{'users':users,"authenticated_user_id":user_id})
+class UserPermissionMixin:
+    def check_user_permission(self, user):
+        if user.id != self.request.user.id:
+            messages.error(self.request, gettext_lazy('You do not have permission to edit another user.'))
+            return False
+        return True
 
-def user_create(request):
-    if request.method == "POST":
-        form = UserRegistrationForm(request.POST)
-        if form.is_valid():
-            first_name = form.cleaned_data['first_name']
-            last_name = form.cleaned_data['last_name']
-            username = form.cleaned_data['username']
-            try:
-                validate_password(form.cleaned_data['password'])
-            except ValidationError as e:
-                for error in e:
-                    messages.error(request, error)
-                return render(request, 'user_create.html', {'form': form})
-            user = CustomUser(
-                first_name=first_name,
-                last_name=last_name,
-                username=username
-            )
-            user.set_password(form.cleaned_data['password'])
-            user.save()
-            return redirect('login')
-        else:
-            for field, errors in form.errors.items():
-                for error in errors:
-                    messages.error(request, error)
-    else:
-        form = UserRegistrationForm()
+class UserListView(ListView):
+    model = CustomUser
+    template_name = 'users.html'
+    context_object_name = 'users'
 
-    return render(request, 'user_create.html',{'form':form})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["authenticated_user_id"] = self.request.user.id if self.request.user.is_authenticated else None
+        return context
+
+class UserCreateView(CreateView):
+    model = CustomUser
+    form_class = UserRegistrationForm
+    template_name = 'user_create.html'
+    success_url = reverse_lazy('login')
+
+    def form_valid(self, form):
+        try:
+            validate_password(form.cleaned_data['password1'])
+        except ValidationError as e:
+            for error in e:
+                messages.error(self.request, error)
+            return self.form_invalid(form)
+
+        user = form.save(commit=False)
+        user.set_password(form.cleaned_data['password1'])
+        user.save()
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        for field, errors in form.errors.items():
+            for error in errors:
+                messages.error(self.request, error)
+        return super().form_invalid(form)
 
 
-class UserUpdateView(UpdateView):
+class UserUpdateView(UpdateView, UserPermissionMixin):
     model = CustomUser
     form_class = UserUpdateForm
     template_name = "update.html"
+    context_object_name = 'user'
     success_url = reverse_lazy('users')
 
     def form_valid(self, form):
         user = form.save(commit=False)
 
-        password = form.cleaned_data.get('password')
+        password = form.cleaned_data.get('password1')
         if password:
             user.set_password(password)
 
@@ -71,8 +79,7 @@ class UserUpdateView(UpdateView):
     def dispatch(self, request, *args, **kwargs):
         user = get_object_or_404(CustomUser,id=self.kwargs['pk'])
 
-        if user.id != request.user.id:
-            messages.error(request, gettext_lazy('You do not have permission to edit another user.'))
+        if not self.check_user_permission(user):
             return redirect('users')
 
         return super().dispatch(request, *args, **kwargs)
@@ -80,28 +87,16 @@ class UserUpdateView(UpdateView):
     def get_object(self, queryset=None):
         return CustomUser.objects.get(id=self.kwargs['pk'])
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        user = self.get_object()
-
-        context['user_id'] = user.id
-        context['first_name'] = user.first_name
-        context['last_name'] = user.last_name
-        context['username'] = user.username
-
-        return context
-
-class UserDeleteView(DeleteView):
+class UserDeleteView(DeleteView, UserPermissionMixin):
     model = CustomUser
     template_name = 'confirm_delete.html'
+    context_object_name = 'user'
     success_url = reverse_lazy('users')
 
     def dispatch(self, request, *args, **kwargs):
         user = get_object_or_404(CustomUser,id=self.kwargs['pk'])
 
-        if user.id != request.user.id:
-            messages.error(request, gettext_lazy('You do not have permission to edit another user.'))
+        if not self.check_user_permission(user):
             return redirect('users')
 
         return super().dispatch(request, *args, **kwargs)
@@ -109,13 +104,3 @@ class UserDeleteView(DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(request, "User has been deleted successfully.")
         return super().delete(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        user = self.get_object()
-
-        context['user_id'] = user.id
-        context['username'] = user.username
-
-        return context

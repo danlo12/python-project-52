@@ -16,7 +16,7 @@
     <!-- Основной контент -->
     <div class="container wrapper flex-grow-1">
         <h1>{% trans "Delete User" %}</h1>
-        <p>{% trans "Are you sure you want to delete " %} {{ username }}?</p>
+        <p>{% trans "Are you sure you want to delete " %} {{ user.username }}?</p>
     <form method="POST">
         {% csrf_token %}
         <input class="btn btn-danger" type="submit" value="{% trans 'Delete' %}">
