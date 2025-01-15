@@ -143,7 +143,7 @@ msgstr "Дата создания"
 
 #: task_manager/templates/login.html:19 task_manager/templates/login.html:23
 msgid "Sign in"
-msgstr "Вход"
+msgstr "Войти"
 
 #: task_manager/templates/navbar.html:4
 msgid "Tasks manager"
@@ -174,7 +174,7 @@ msgstr "Выход"
 #: task_manager/templates/update.html:49
 #: task_manager/templates/user_create.html:52
 msgid "Log in"
-msgstr "ААА"
+msgstr "Вход"
 
 #: task_manager/templates/navbar.html:37
 msgid "log in"

@@ -17,26 +17,24 @@
                 {% endif %}
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'statuses' %}">{% trans "Statuses" %}</a>
+                        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="nav-link" style="border: none; background: none; padding: 2;">
+                                {% trans "Log out" %}
+                            </button>
+                        </form>
                     </li>
+                {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'labels' %}">{% trans "Labels" %}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'tasks' %}">{% trans "Tasks" %}</a>
+                        <form action="{% url 'login' %}" method="get" style="display:inline;">
+                            <button type="submit" class="nav-link" style="border: none; background: none; padding: 2;">
+                                {% trans "log in" %}
+                            </button>
+                        </form>
                     </li>
                 {% endif %}
             </ul>
-            {% if user.is_authenticated %}
-                <form action="{% url 'logout' %}" method="post" style="display:inline;">
-                {% csrf_token %}
-                <button type="submit">{% trans "Log out" %}</button>
-                </form>
-            {% else %}
-                <form action="{% url 'login' %}" method="get" style="display:inline;">
-                <button type="submit">{% trans "log in" %}</button>
-                </form>
-            {% endif %}
+
             <div class="ms-auto">
             {% get_current_language as CURRENT_LANGUAGE %}
                 {% if CURRENT_LANGUAGE == "ru" %}
