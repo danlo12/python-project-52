@@ -170,9 +170,14 @@ msgstr "Задачи"
 msgid "Log out"
 msgstr "Выход"
 
-#: task_manager/templates/navbar.html:37 task_manager/templates/update.html:49
+#: task_manager/templates/navbar.html:37
+#: task_manager/templates/update.html:49
 #: task_manager/templates/user_create.html:52
 msgid "Log in"
+msgstr "ААА"
+
+#: task_manager/templates/navbar.html:37
+msgid "log in"
 msgstr "Вход"
 
 #: task_manager/templates/status_create.html:18
