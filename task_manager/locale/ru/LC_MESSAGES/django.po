@@ -155,7 +155,7 @@ msgstr "Пользователи"
 
 #: task_manager/templates/navbar.html:15
 msgid "Sign up"
-msgstr "Зарегистироваться"
+msgstr "Регистрация"
 
 #: task_manager/templates/navbar.html:20
 #: task_manager/templates/statuses.html:19
