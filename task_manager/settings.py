@@ -15,6 +15,7 @@ from pathlib import Path
 
 import dj_database_url
 from dotenv import load_dotenv
+from django.conf import settings
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -120,9 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOCALE_PATH = [
-    BASE_DIR / "locale"
-]
+LOCALE_PATHS = [ os.path.join(settings.BASE_DIR, 'locale')]
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
