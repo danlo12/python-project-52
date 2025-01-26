@@ -35,6 +35,7 @@ class StatusesCreateView(CreateView):
         if not request.user.is_authenticated:
             messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
             return redirect('login')
+        messages.success(request, gettext_lazy('Status successfully create'))
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -47,6 +48,7 @@ class StatusesUpdateView(UpdateView):
         if not request.user.is_authenticated:
             messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
             return redirect('login')
+        messages.success(request, gettext_lazy('Status successfully update'))
         return super().dispatch(request, *args, **kwargs)
 
 class StatusesDeleteView(DeleteView):
@@ -58,4 +60,5 @@ class StatusesDeleteView(DeleteView):
         if not request.user.is_authenticated:
             messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
             return redirect('login')
+        messages.success(request, gettext_lazy('Status successfully deleted'))
         return super().dispatch(request, *args, **kwargs)

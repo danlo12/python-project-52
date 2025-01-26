@@ -34,6 +34,7 @@ class LabelsCreateView(CreateView):
         if not request.user.is_authenticated:
             messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
             return redirect('login')
+        messages.success(request, gettext_lazy('Label successfully create'))
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -46,6 +47,7 @@ class LabelsUpdateView(UpdateView):
         if not request.user.is_authenticated:
             messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
             return redirect('login')
+        messages.success(request, gettext_lazy('Label successfully update'))
         return super().dispatch(request, *args, **kwargs)
 
 class LabelsDeleteView(DeleteView):
@@ -60,4 +62,5 @@ class LabelsDeleteView(DeleteView):
         if label.task_set.exists():
             messages.error(request, gettext_lazy('Cannot delete label because it is associated with tasks.'))
             return redirect('labels')
+        messages.success(request, gettext_lazy('Label successfully delete'))
         return super().dispatch(request, *args, **kwargs)

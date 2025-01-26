@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-26 22:30+0000\n"
+"POT-Creation-Date: 2025-01-26 22:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,21 +42,75 @@ msgid "Password"
 msgstr "Пароль"
 
 #: task_manager/labels/views.py:23 task_manager/labels/views.py:35
-#: task_manager/labels/views.py:47 task_manager/labels/views.py:57
+#: task_manager/labels/views.py:48 task_manager/labels/views.py:59
 #: task_manager/statuses/views.py:24 task_manager/statuses/views.py:36
-#: task_manager/statuses/views.py:48 task_manager/statuses/views.py:59
+#: task_manager/statuses/views.py:49 task_manager/statuses/views.py:61
 #: task_manager/tasks/views.py:26 task_manager/tasks/views.py:72
-#: task_manager/tasks/views.py:96
+#: task_manager/tasks/views.py:97
 msgid "You need to be logged in to perform this action."
 msgstr "Вам необходимо войти в систему, чтобы выполнить это действие."
 
-#: task_manager/labels/views.py:61
+#: task_manager/labels/views.py:37
+#, fuzzy
+#| msgid "User successfully changed"
+msgid "Label successfully create"
+msgstr "Метка успешно создана"
+
+#: task_manager/labels/views.py:50
+#, fuzzy
+#| msgid "User successfully changed"
+msgid "Label successfully update"
+msgstr "Метка успешно изменена"
+
+#: task_manager/labels/views.py:63
 msgid "Cannot delete label because it is associated with tasks."
 msgstr "Невозможно удалить метку, поскольку она связана с задачами."
 
-#: task_manager/tasks/views.py:115
+#: task_manager/labels/views.py:65
+#, fuzzy
+#| msgid "User successfully registered."
+msgid "Label successfully delete"
+msgstr "Метка успешно удалена"
+
+#: task_manager/statuses/views.py:38
+#, fuzzy
+#| msgid "User successfully changed"
+msgid "Status successfully create"
+msgstr "Статус успешно создан"
+
+#: task_manager/statuses/views.py:51
+#, fuzzy
+#| msgid "User successfully changed"
+msgid "Status successfully update"
+msgstr "Статус успешно изменен"
+
+#: task_manager/statuses/views.py:63
+#, fuzzy
+#| msgid "User successfully registered."
+msgid "Status successfully deleted"
+msgstr "Статус успешно удален"
+
+#: task_manager/tasks/views.py:74
+#, fuzzy
+#| msgid "User successfully changed"
+msgid "Task successfully create"
+msgstr "Задача успешно создана"
+
+#: task_manager/tasks/views.py:99
+#, fuzzy
+#| msgid "User successfully changed"
+msgid "Task successfully update"
+msgstr "Задача успешно изменена"
+
+#: task_manager/tasks/views.py:117
 msgid "You do not have permission to edit this task."
 msgstr "У вас нет разрешения на редактирование этой задачи."
+
+#: task_manager/tasks/views.py:119
+#, fuzzy
+#| msgid "User successfully registered."
+msgid "Task successfully delete"
+msgstr "Задача успешно удалена"
 
 #: task_manager/templates/confirm_delete.html:18
 msgid "Delete User"
@@ -130,7 +184,7 @@ msgstr "Отмена"
 msgid "Update"
 msgstr "Изменить"
 
-#: task_manager/templates/labels.html:19
+#: task_manager/templates/labels.html:19 task_manager/templates/navbar.html:26
 #: task_manager/templates/task_card.html:48
 msgid "Labels"
 msgstr "Метки"
@@ -168,7 +222,16 @@ msgstr "Регистрация"
 msgid "log in"
 msgstr "Вход"
 
-#: task_manager/templates/navbar.html:26
+#: task_manager/templates/navbar.html:23
+#: task_manager/templates/statuses.html:19
+msgid "Statuses"
+msgstr "Статусы"
+
+#: task_manager/templates/navbar.html:29 task_manager/templates/tasks.html:21
+msgid "Tasks"
+msgstr "Задачи"
+
+#: task_manager/templates/navbar.html:35
 msgid "log out"
 msgstr "Выход"
 
@@ -181,10 +244,6 @@ msgstr "Создать статус"
 #: task_manager/templates/status_delete.html:18
 msgid "Delete status"
 msgstr "Удалить статус"
-
-#: task_manager/templates/statuses.html:19
-msgid "Statuses"
-msgstr "Статусы"
 
 #: task_manager/templates/task_card.html:20
 msgid "Task"
@@ -212,10 +271,6 @@ msgstr "Статус"
 #: task_manager/templates/task_card.html:44
 msgid "Created at"
 msgstr "Дата создания"
-
-#: task_manager/templates/tasks.html:21
-msgid "Tasks"
-msgstr "Задачи"
 
 #: task_manager/templates/tasks.html:22
 msgid "Create task"
@@ -327,7 +382,7 @@ msgstr "Пользователь успешно зарегистрирован"
 msgid "User successfully changed"
 msgstr "Пользователь успешно изменен"
 
-#: task_manager/users/views.py:102
+#: task_manager/users/views.py:103
 msgid "User has been deleted successfully."
 msgstr "Пользователь успешно удален"
 
