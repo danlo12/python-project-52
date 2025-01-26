@@ -99,9 +99,8 @@ class UserDeleteView(DeleteView, UserPermissionMixin):
 
         if not self.check_user_permission(user):
             return redirect('users')
-
+        if request.method == "POST":
+            messages.success(self.request, gettext_lazy("User has been deleted successfully."))
         return super().dispatch(request, *args, **kwargs)
-
     def delete(self, request, *args, **kwargs):
-        messages.success(request, gettext_lazy("User has been deleted successfully."))
         return super().delete(request, *args, **kwargs)

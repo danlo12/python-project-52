@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-26 22:14+0000\n"
+"POT-Creation-Date: 2025-01-26 22:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,13 +71,10 @@ msgstr "Вы уверены что хотите удалить "
 
 #: task_manager/templates/confirm_delete.html:22
 #: task_manager/templates/label_delete.html:22
-#: task_manager/templates/labels.html:38
 #: task_manager/templates/status_delete.html:22
-#: task_manager/templates/statuses.html:38
-#: task_manager/templates/task_card.html:57
-#: task_manager/templates/tasks.html:93 task_manager/templates/users.html:39
-msgid "Delete"
-msgstr "Удалить"
+#: task_manager/templates/tasks_delete.html:22
+msgid "Yes, delete"
+msgstr "Да, удалить"
 
 #: task_manager/templates/index.html:20
 msgid "Greetings from Danlo"
@@ -143,6 +140,13 @@ msgstr "Метки"
 #: task_manager/templates/users.html:26
 msgid "Creation date"
 msgstr "Дата создания"
+
+#: task_manager/templates/labels.html:38
+#: task_manager/templates/statuses.html:38
+#: task_manager/templates/task_card.html:57
+#: task_manager/templates/tasks.html:93 task_manager/templates/users.html:39
+msgid "Delete"
+msgstr "Удалить"
 
 #: task_manager/templates/login.html:31
 msgid "Sign in"
@@ -254,10 +258,6 @@ msgstr "описание"
 msgid "Delete task"
 msgstr "Удалить задачу"
 
-#: task_manager/templates/tasks_delete.html:22
-msgid "Yes, delete"
-msgstr "Да, удалить"
-
 #: task_manager/templates/tasks_update.html:17
 msgid "Update tasks"
 msgstr "Обновить задачу"
@@ -327,7 +327,7 @@ msgstr "Пользователь успешно зарегистрирован"
 msgid "User successfully changed"
 msgstr "Пользователь успешно изменен"
 
-#: task_manager/users/views.py:106
+#: task_manager/users/views.py:102
 msgid "User has been deleted successfully."
 msgstr "Пользователь успешно удален"
 
