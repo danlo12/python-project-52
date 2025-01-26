@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-23 13:27+0000\n"
+"POT-Creation-Date: 2025-01-26 15:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -162,7 +162,8 @@ msgid "Sign up"
 msgstr "Регистрация"
 
 #: task_manager/templates/navbar.html:23
-msgid "Log out"
+
+msgid "log out"
 msgstr "Выход"
 
 #: task_manager/templates/navbar.html:31
@@ -316,6 +317,9 @@ msgstr "Полное имя"
 #: task_manager/users/views.py:23
 msgid "You do not have permission to edit another user."
 msgstr "У вас нет разрешения на редактирование другого пользователя"
+
+#~ msgid "Выход"
+#~ msgstr "Log out"
 
 #~ msgid "Passwords do not match."
 #~ msgstr "Пароль не подходит"
