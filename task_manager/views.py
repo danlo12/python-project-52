@@ -16,7 +16,7 @@ from .forms import CustomLoginForm
 logger = logging.getLogger(__name__)
 
 def index(request):
-    return render(request,'index.html', context={'who':'Username',})
+    return render(request,'index.html')
 
 class UserLoginView(LoginView):
     template_name = 'login.html'
