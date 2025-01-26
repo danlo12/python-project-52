@@ -132,7 +132,7 @@ msgstr "Отмена"
 #: task_manager/templates/task_card.html:55
 #: task_manager/templates/tasks.html:92 task_manager/templates/users.html:38
 msgid "Update"
-msgstr "Обновить"
+msgstr "Изменить"
 
 #: task_manager/templates/labels.html:19
 #: task_manager/templates/task_card.html:48
