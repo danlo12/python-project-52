@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-26 15:02+0000\n"
+"POT-Creation-Date: 2025-01-26 21:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -161,14 +161,13 @@ msgstr "Пользователи"
 msgid "Sign up"
 msgstr "Регистрация"
 
-#: task_manager/templates/navbar.html:23
-
-msgid "log out"
-msgstr "Выход"
-
-#: task_manager/templates/navbar.html:31
+#: task_manager/templates/navbar.html:18
 msgid "log in"
 msgstr "Вход"
+
+#: task_manager/templates/navbar.html:26
+msgid "log out"
+msgstr "Выход"
 
 #: task_manager/templates/status_create.html:18
 #: task_manager/templates/status_update.html:18
@@ -302,13 +301,18 @@ msgid "Please re-enter your password for confirmation."
 msgstr "Пожалуйста, еще раз введите свой пароль для подтверждения."
 
 #: task_manager/templates/update.html:49
-#: task_manager/templates/user_create.html:52
 msgid "Log in"
 msgstr "Вход"
 
 #: task_manager/templates/user_create.html:19
 msgid "Registration"
 msgstr "Регистрировать"
+
+#: task_manager/templates/user_create.html:52
+#, fuzzy
+#| msgid "Registration"
+msgid "Register"
+msgstr "Зарегистрировать"
 
 #: task_manager/templates/users.html:25
 msgid "Full name"
