@@ -309,8 +309,7 @@ msgid "Registration"
 msgstr "Регистрировать"
 
 #: task_manager/templates/user_create.html:52
-#, fuzzy
-#| msgid "Registration"
+
 msgid "Register"
 msgstr "Зарегистрировать"
 
