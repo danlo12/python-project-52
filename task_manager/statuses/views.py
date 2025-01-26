@@ -45,6 +45,7 @@ class StatusesUpdateView(UpdateView):
     template_name = 'status_update.html'
     fields = ['name']
     success_url = reverse_lazy('statuses')
+    context_object_name = "status"
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
