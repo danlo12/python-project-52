@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-26 21:18+0000\n"
+"POT-Creation-Date: 2025-01-26 21:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -309,7 +309,6 @@ msgid "Registration"
 msgstr "Регистрировать"
 
 #: task_manager/templates/user_create.html:52
-
 msgid "Register"
 msgstr "Зарегистрировать"
 
@@ -320,6 +319,14 @@ msgstr "Полное имя"
 #: task_manager/users/views.py:23
 msgid "You do not have permission to edit another user."
 msgstr "У вас нет разрешения на редактирование другого пользователя"
+
+#: task_manager/users/views.py:54
+msgid "User successfully registered."
+msgstr "Пользователь успешно зарегистрирован"
+
+#: task_manager/users/views.py:106
+msgid "User has been deleted successfully."
+msgstr "Пользователь был удален."
 
 #~ msgid "Выход"
 #~ msgstr "Log out"

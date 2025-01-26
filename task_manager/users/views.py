@@ -51,6 +51,7 @@ class UserCreateView(CreateView):
         user = form.save(commit=False)
         user.set_password(form.cleaned_data['password1'])
         user.save()
+        messages.success(self.request, gettext_lazy("User successfully registered."))
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -102,5 +103,5 @@ class UserDeleteView(DeleteView, UserPermissionMixin):
         return super().dispatch(request, *args, **kwargs)
 
     def delete(self, request, *args, **kwargs):
-        messages.success(request, "User has been deleted successfully.")
+        messages.success(request, gettext_lazy("User has been deleted successfully."))
         return super().delete(request, *args, **kwargs)
