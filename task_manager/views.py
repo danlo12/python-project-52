@@ -32,6 +32,8 @@ class UserLoginView(LoginView):
         return super().form_valid(form)
 
 class UserLogoutView(LogoutView):
-    def form_valid(self, form):
-        messages.success(self.request, "Вы разлогинены")
+    def dispatch(self, request, *args, **kwargs):
+        print("!!!!")
+        messages.success(request, "Вы разлогинены")
+        return super().dispatch(request, *args, **kwargs)
     next_page = reverse_lazy('home')
