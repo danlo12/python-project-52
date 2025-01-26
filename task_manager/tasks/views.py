@@ -71,7 +71,8 @@ class TasksCreateView(CreateView):
         if not request.user.is_authenticated:
             messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
             return redirect('login')
-        messages.success(request, gettext_lazy('Task successfully create'))
+        if request.method == "POST":
+            messages.success(request, gettext_lazy('Task successfully create'))
         return super().dispatch(request, *args, **kwargs)
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -96,7 +97,8 @@ class TasksUpdateView(UpdateView):
         if not request.user.is_authenticated:
             messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
             return redirect('login')
-        messages.success(request, gettext_lazy('Task successfully update'))
+        if request.method == "POST":
+            messages.success(request, gettext_lazy('Task successfully update'))
         return super().dispatch(request, *args, **kwargs)
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -116,7 +118,8 @@ class TasksDeleteView(DeleteView):
         if task.creator.id != request.user.id:
             messages.error(request, gettext_lazy('You do not have permission to edit this task.'))
             return redirect('tasks')
-        messages.success(request, gettext_lazy('Task successfully delete'))
+        if request.method == "POST":
+            messages.success(request, gettext_lazy('Task successfully delete'))
         return super().dispatch(request, *args, **kwargs)
 
 

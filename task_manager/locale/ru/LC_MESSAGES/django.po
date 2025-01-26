@@ -51,14 +51,12 @@ msgid "You need to be logged in to perform this action."
 msgstr "Вам необходимо войти в систему, чтобы выполнить это действие."
 
 #: task_manager/labels/views.py:37
-#, fuzzy
-#| msgid "User successfully changed"
+
 msgid "Label successfully create"
 msgstr "Метка успешно создана"
 
 #: task_manager/labels/views.py:50
-#, fuzzy
-#| msgid "User successfully changed"
+
 msgid "Label successfully update"
 msgstr "Метка успешно изменена"
 
@@ -67,38 +65,32 @@ msgid "Cannot delete label because it is associated with tasks."
 msgstr "Невозможно удалить метку, поскольку она связана с задачами."
 
 #: task_manager/labels/views.py:65
-#, fuzzy
-#| msgid "User successfully registered."
+
 msgid "Label successfully delete"
 msgstr "Метка успешно удалена"
 
 #: task_manager/statuses/views.py:38
-#, fuzzy
-#| msgid "User successfully changed"
+
 msgid "Status successfully create"
 msgstr "Статус успешно создан"
 
 #: task_manager/statuses/views.py:51
-#, fuzzy
-#| msgid "User successfully changed"
+
 msgid "Status successfully update"
 msgstr "Статус успешно изменен"
 
 #: task_manager/statuses/views.py:63
-#, fuzzy
-#| msgid "User successfully registered."
+
 msgid "Status successfully deleted"
 msgstr "Статус успешно удален"
 
 #: task_manager/tasks/views.py:74
-#, fuzzy
-#| msgid "User successfully changed"
+
 msgid "Task successfully create"
 msgstr "Задача успешно создана"
 
 #: task_manager/tasks/views.py:99
-#, fuzzy
-#| msgid "User successfully changed"
+
 msgid "Task successfully update"
 msgstr "Задача успешно изменена"
 
@@ -107,8 +99,7 @@ msgid "You do not have permission to edit this task."
 msgstr "У вас нет разрешения на редактирование этой задачи."
 
 #: task_manager/tasks/views.py:119
-#, fuzzy
-#| msgid "User successfully registered."
+
 msgid "Task successfully delete"
 msgstr "Задача успешно удалена"
 
