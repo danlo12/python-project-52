@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-26 21:31+0000\n"
+"POT-Creation-Date: 2025-01-26 22:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -130,7 +130,8 @@ msgstr "Отмена"
 #: task_manager/templates/status_update.html:25
 #: task_manager/templates/statuses.html:37
 #: task_manager/templates/task_card.html:55
-#: task_manager/templates/tasks.html:92 task_manager/templates/users.html:38
+#: task_manager/templates/tasks.html:92 task_manager/templates/update.html:49
+#: task_manager/templates/users.html:38
 msgid "Update"
 msgstr "Изменить"
 
@@ -300,10 +301,6 @@ msgstr "Подтверждение пароля"
 msgid "Please re-enter your password for confirmation."
 msgstr "Пожалуйста, еще раз введите свой пароль для подтверждения."
 
-#: task_manager/templates/update.html:49
-msgid "Log in"
-msgstr "Вход"
-
 #: task_manager/templates/user_create.html:19
 msgid "Registration"
 msgstr "Регистрировать"
@@ -324,9 +321,17 @@ msgstr "У вас нет разрешения на редактирование 
 msgid "User successfully registered."
 msgstr "Пользователь успешно зарегистрирован"
 
+#: task_manager/users/views.py:77
+
+msgid "User successfully changed"
+msgstr "Пользователь успешно изменен"
+
 #: task_manager/users/views.py:106
 msgid "User has been deleted successfully."
 msgstr "Пользователь был удален."
+
+#~ msgid "Log in"
+#~ msgstr "Вход"
 
 #~ msgid "Выход"
 #~ msgstr "Log out"

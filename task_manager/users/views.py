@@ -74,7 +74,7 @@ class UserUpdateView(UpdateView, UserPermissionMixin):
         password = form.cleaned_data.get('password1')
         if password:
             user.set_password(password)
-
+        messages.success(self.request, gettext_lazy("User successfully changed"))
         user.save()
         return super().form_valid(form)
     def dispatch(self, request, *args, **kwargs):
