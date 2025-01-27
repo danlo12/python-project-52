@@ -22,7 +22,7 @@ msgstr ""
 
 #: task_manager/filters.py:11 task_manager/templates/tasks.html:62
 msgid "Only your tasks"
-msgstr "Только мои задачи"
+msgstr "Только свои задачи"
 
 #: task_manager/forms.py:11 task_manager/forms.py:12
 #: task_manager/templates/login.html:22 task_manager/templates/update.html:28
