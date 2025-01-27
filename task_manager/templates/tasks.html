@@ -87,7 +87,6 @@
             <td>{{task.status}}</td>
             <td>{{task.performer.first_name}} {{task.performer.last_name}}</td>
             <td>{{task.creator.first_name}} {{task.creator.last_name}}</td>
-            <td>{{task.creator}}</td>
             <td>{{task.created_at}}</td>
             <td>
                 <a class="nav-link" href="{% url 'tasks_update' pk=task.id %}">{% trans "Update" %}</a>
