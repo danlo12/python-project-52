@@ -44,7 +44,7 @@
               {% endfor %}
           </select>
         </div>
-        <label class="form-label" for="labels">{% trans 'Label' %}</label>
+        <label class="form-label" for="labels">{% trans 'Labels' %}</label>
           <select name="labels" class="form-control" required="" id="labels" multiple>
               {% for label in labels %}
               <option value="{{ label.id }}">{{label.name}}</option>
