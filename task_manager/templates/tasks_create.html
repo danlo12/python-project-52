@@ -40,7 +40,7 @@
           <select name="performer" class="form-control" required="" id="performer">
               <option>-----------</option>
               {% for performer in performers %}
-              <option value="{{ performer.id }}">{{performer.username}}</option>
+              <option value="{{ performer.id }}">{{performer.first_name}} {{performer.last_name}}</option>
               {% endfor %}
           </select>
         </div>
