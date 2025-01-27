@@ -38,8 +38,8 @@
                 <select name="performer" id="performer" class="form-select">
                     <option value="">{% trans "All" %}</option>
                     {% for performer in performers %}
-                        <option value="{{ performer }}" {% if performer == current_filters.performer %}selected{% endif %}>
-                            {{ performer }}
+                        <option value="{{ performer.id }}">
+                            {{ performer.first_name }} {{ performer.last_name }}
                         </option>
                     {% endfor %}
                 </select>
@@ -49,8 +49,8 @@
                 <select name="labels" id="labels" class="form-select">
                     <option value="">{% trans "All" %}</option>
                     {% for label in labels %}
-                        <option value="{{ label }}" {% if label == current_filters.label %}selected{% endif %}>
-                            {{ label }}
+                        <option value="{{ label.id }}">
+                            {{ label.name }}
                         </option>
                     {% endfor %}
                 </select>
@@ -85,7 +85,8 @@
             <td>{{ task.id }}</td>
             <td><a href="{% url 'task_card' pk=task.id %}">{{task.name}}</a></td>
             <td>{{task.status}}</td>
-            <td>{{task.performer}}</td>
+            <td>{{task.performer.first_name}} {{task.performer.last_name}}</td>
+            <td>{{task.creator.first_name}} {{task.creator.last_name}}</td>
             <td>{{task.creator}}</td>
             <td>{{task.created_at}}</td>
             <td>

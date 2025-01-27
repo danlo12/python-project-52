@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.db.models import F, CharField
 import logging
 
 from task_manager.filters import TaskFilter
@@ -37,20 +38,19 @@ class TasksListView(ListView):
         if status:
             queryset = queryset.filter(status__name=status)
         if performer:
-            queryset = queryset.filter(performer__username=performer)
+            queryset = queryset.filter(performer__id=performer)
         if label:
-            queryset = queryset.filter(labels__name=label)
+            queryset = queryset.filter(labels__id=label)
         if my_tasks == "on":
             queryset = queryset.filter(creator=self.request.user)
         return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
             # Добавляем данные для фильтров
         context['statuses'] = Task.objects.values_list('status__name', flat=True).distinct()
-        context['performers'] = Task.objects.values_list('performer__username', flat=True).distinct()
-        context['labels'] = Task.objects.values_list('labels__name', flat=True).distinct()
+        context['performers'] = CustomUser.objects.all().distinct()
+        context['labels'] = Label.objects.all().distinct()
 
             # Передаем текущие фильтры в шаблон для сохранения состояния
         context['current_filters'] = {

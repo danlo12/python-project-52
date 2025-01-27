@@ -37,7 +37,7 @@
         </div>
         <div class="mb-3">
           <label class="form-label" for="performer">{% trans 'Performer' %}</label>
-          <select name="performer" class="form-control" required="" id="performer">
+          <select name="performer" class="form-control" id="performer">
               <option>-----------</option>
               {% for performer in performers %}
               <option value="{{ performer.id }}">{{performer.first_name}} {{performer.last_name}}</option>
