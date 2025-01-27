@@ -82,8 +82,8 @@
     <tbody>
         {% for task in tasks %}
         <tr>
-            <td><a href="{% url 'task_card' pk=task.id %}">{{ task.id }}</a></td>
-            <td>{{task.name}}</td>
+            <td>{{ task.id }}</td>
+            <td><a href="{% url 'task_card' pk=task.id %}">{{task.name}}</a></td>
             <td>{{task.status}}</td>
             <td>{{task.performer}}</td>
             <td>{{task.creator}}</td>
