@@ -44,6 +44,7 @@ class LabelsUpdateView(UpdateView):
     template_name = 'label_update.html'
     fields = ['name']
     success_url = reverse_lazy('labels')
+    context_object_name = "label"
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
