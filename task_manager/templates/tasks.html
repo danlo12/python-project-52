@@ -45,8 +45,8 @@
                 </select>
             </div>
             <div class="col">
-                <label for="label">{% trans "Label" %}</label>
-                <select name="label" id="label" class="form-select">
+                <label for="labels">{% trans "Label" %}</label>
+                <select name="labels" id="labels" class="form-select">
                     <option value="">{% trans "All" %}</option>
                     {% for label in labels %}
                         <option value="{{ label }}" {% if label == current_filters.label %}selected{% endif %}>
@@ -96,7 +96,7 @@
         {% endfor %}
     </tbody>
     </table>
-    </div>
+        </div>
     {% bootstrap_javascript %}
 </body>
 </html>

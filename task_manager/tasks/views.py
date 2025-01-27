@@ -31,7 +31,7 @@ class TasksListView(ListView):
 
         status = self.request.GET.get('status')
         performer = self.request.GET.get('performer')
-        label = self.request.GET.get('label')
+        label = self.request.GET.get('labels')
         my_tasks = self.request.GET.get('my_tasks')
 
         if status:
@@ -39,7 +39,7 @@ class TasksListView(ListView):
         if performer:
             queryset = queryset.filter(performer__username=performer)
         if label:
-            queryset = queryset.filter(label=label)
+            queryset = queryset.filter(labels__name=label)
         if my_tasks == "on":
             queryset = queryset.filter(creator=self.request.user)
         return queryset
@@ -56,7 +56,7 @@ class TasksListView(ListView):
         context['current_filters'] = {
             'status': self.request.GET.get('status', ''),
             'performer': self.request.GET.get('performer', ''),
-            'label': self.request.GET.get('label', ''),
+            'labels': self.request.GET.get('label', ''),
             'my_tasks': self.request.GET.get('my_tasks', ''),
         }
         return context
