@@ -56,7 +56,7 @@ class TasksListView(ListView):
         context['current_filters'] = {
             'status': self.request.GET.get('status', ''),
             'performer': self.request.GET.get('performer', ''),
-            'labels': self.request.GET.get('label', ''),
+            'labels': self.request.GET.get('labels', ''),
             'my_tasks': self.request.GET.get('my_tasks', ''),
         }
         return context
