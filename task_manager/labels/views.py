@@ -41,7 +41,7 @@ class LabelsCreateView(CreateView):
         if Label.objects.filter(name=name).exists():
             messages.error(self.request, gettext_lazy('Label with this name already exists.'))
             return redirect('label_create')
-        messages.success(self.request, gettext_lazy('Label successfully created.'))
+        messages.success(self.request, gettext_lazy('Label successfully create'))
         return super().form_valid(form)
 
 
