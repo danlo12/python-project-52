@@ -34,9 +34,15 @@ class LabelsCreateView(CreateView):
         if not request.user.is_authenticated:
             messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
             return redirect('login')
-        if request.method == "POST":
-            messages.success(request, gettext_lazy('Label successfully create'))
         return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        name = form.cleaned_data['name']
+        if Label.objects.filter(name=name).exists():
+            messages.error(self.request, gettext_lazy('Label with this name already exists.'))
+            return redirect('label_create')
+        messages.success(self.request, gettext_lazy('Label successfully created.'))
+        return super().form_valid(form)
 
 
 class LabelsUpdateView(UpdateView):
