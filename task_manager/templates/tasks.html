@@ -56,9 +56,9 @@
                 <select name="labels" id="labels" class="form-select">
                     <option value="">{% trans "All" %}</option>
                     {% for label in labels %}
-                    <option value="{{ labels.id }}">
-                        {{ label.name }}
-                    </option>
+                        <option value="{{ label.id }}">
+                            {{ label.name }}
+                        </option>
                     {% endfor %}
                 </select>
             </div>
