@@ -50,7 +50,7 @@ class TasksListView(ListView):
             # Добавляем данные для фильтров
         context['statuses'] = Task.objects.values_list('status__name', flat=True).distinct()
         context['performers'] = CustomUser.objects.all().distinct()
-        context['labels'] = Label.objects.all().distinct()
+        context['labels'] = Label.objects.all()
 
             # Передаем текущие фильтры в шаблон для сохранения состояния
         context['current_filters'] = {
