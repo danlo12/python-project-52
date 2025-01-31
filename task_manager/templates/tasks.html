@@ -17,6 +17,7 @@
 
     <!-- Основной контент -->
     {% include 'flash.html' %}
+    <h1>{{request.GET}}</h1>
     <div class="container wrapper flex grow-1">
     <h1 class="my-4">{% trans "Tasks" %}</h1>
         <a class="btn btn-primary mb-3" href="{% url 'tasks_create'%}">{% trans "Create task" %}</a>
@@ -27,7 +28,7 @@
                 <select name="status" id="status" class="form-select">
                     <option value="">{% trans "All" %}</option>
                     {% for status in statuses %}
-                        <option value="{{ status }}">
+                        <option value="{{ status }}" {% if status == request.GET.status %}selected{% endif %}>
                             {{ status }}
                         </option>
                     {% endfor %}
@@ -38,7 +39,7 @@
                 <select name="performer" id="performer" class="form-select">
                     <option value="">{% trans "All" %}</option>
                     {% for performer in performers %}
-                        <option value="{{ performer.id }}">
+                        <option value="{{ performer.id }}" {% if performer.id|stringformat:"s" == request.GET.performer %}selected{% endif %}>
                             {{ performer.first_name }} {{ performer.last_name }}
                         </option>
                     {% endfor %}
@@ -49,7 +50,7 @@
                 <select name="labels" id="labels" class="form-select">
                     <option value="">{% trans "All" %}</option>
                     {% for label in labels %}
-                        <option value="{{ label.id }}">
+                        <option value="{{ label.id }}" {% if label.id|stringformat:"s" == request.GET.labels %}selected{% endif %}>
                             {{ label.name }}
                         </option>
                     {% endfor %}
