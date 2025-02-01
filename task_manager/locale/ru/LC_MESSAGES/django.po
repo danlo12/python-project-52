@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-27 01:33+0000\n"
+"POT-Creation-Date: 2025-02-01 02:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,27 +42,30 @@ msgid "Password"
 msgstr "Пароль"
 
 #: task_manager/labels/views.py:23 task_manager/labels/views.py:35
-#: task_manager/labels/views.py:50 task_manager/labels/views.py:62
+#: task_manager/labels/views.py:56 task_manager/labels/views.py:68
 #: task_manager/statuses/views.py:24 task_manager/statuses/views.py:36
-#: task_manager/statuses/views.py:51 task_manager/statuses/views.py:64
-#: task_manager/tasks/views.py:26 task_manager/tasks/views.py:72
-#: task_manager/tasks/views.py:98
+#: task_manager/statuses/views.py:51 task_manager/tasks/views.py:27
+#: task_manager/tasks/views.py:72 task_manager/tasks/views.py:98
 msgid "You need to be logged in to perform this action."
 msgstr "Вам необходимо войти в систему, чтобы выполнить это действие."
 
-#: task_manager/labels/views.py:38
+#: task_manager/labels/views.py:42
+msgid "Label with this name already exists."
+msgstr ""
+
+#: task_manager/labels/views.py:44
 msgid "Label successfully create"
 msgstr "Метка успешно создана"
 
-#: task_manager/labels/views.py:53
+#: task_manager/labels/views.py:59
 msgid "Label successfully update"
 msgstr "Метка успешно изменена"
 
-#: task_manager/labels/views.py:66
+#: task_manager/labels/views.py:72
 msgid "Cannot delete label because it is associated with tasks."
 msgstr "Невозможно удалить метку, поскольку она связана с задачами."
 
-#: task_manager/labels/views.py:69
+#: task_manager/labels/views.py:75
 msgid "Label successfully delete"
 msgstr "Метка успешно удалена"
 
@@ -73,6 +76,11 @@ msgstr "Статус успешно создан"
 #: task_manager/statuses/views.py:54
 msgid "Status successfully update"
 msgstr "Статус успешно изменен"
+
+#: task_manager/statuses/views.py:64
+
+msgid "Cannot delete status"
+msgstr "Невозможно удалить статус"
 
 #: task_manager/statuses/views.py:67
 msgid "Status successfully deleted"
@@ -86,11 +94,11 @@ msgstr "Задача успешно создана"
 msgid "Task successfully update"
 msgstr "Задача успешно изменена"
 
-#: task_manager/tasks/views.py:119
+#: task_manager/tasks/views.py:121
 msgid "You do not have permission to edit this task."
 msgstr "У вас нет разрешения на редактирование этой задачи."
 
-#: task_manager/tasks/views.py:122
+#: task_manager/tasks/views.py:124
 msgid "Task successfully delete"
 msgstr "Задача успешно удалена"
 
@@ -116,14 +124,14 @@ msgstr "Да, удалить"
 msgid "Greetings from Danlo"
 msgstr ""
 
-#: task_manager/templates/label_create.html:18
+#: task_manager/templates/label_create.html:19
 #: task_manager/templates/label_update.html:18
 #: task_manager/templates/labels.html:20
 msgid "Create label"
 msgstr "Создать метку"
 
-#: task_manager/templates/label_create.html:22
 #: task_manager/templates/label_create.html:23
+#: task_manager/templates/label_create.html:24
 #: task_manager/templates/label_update.html:22
 #: task_manager/templates/label_update.html:23
 #: task_manager/templates/labels.html:25
@@ -139,10 +147,9 @@ msgstr "Создать метку"
 msgid "Name"
 msgstr "Имя"
 
-#: task_manager/templates/label_create.html:25
+#: task_manager/templates/label_create.html:26
 #: task_manager/templates/status_create.html:25
 #: task_manager/templates/tasks_create.html:53
-#: task_manager/templates/tasks_update.html:52
 msgid "Create"
 msgstr "Создать"
 
@@ -169,6 +176,7 @@ msgstr "Изменить"
 #: task_manager/templates/labels.html:19 task_manager/templates/navbar.html:26
 #: task_manager/templates/task_card.html:48
 #: task_manager/templates/tasks_create.html:47
+#: task_manager/templates/tasks_update.html:46
 msgid "Labels"
 msgstr "Метки"
 
@@ -261,7 +269,6 @@ msgid "All"
 msgstr "Все"
 
 #: task_manager/templates/tasks.html:48
-#: task_manager/templates/tasks_update.html:46
 msgid "Label"
 msgstr "Метка"
 
@@ -294,6 +301,12 @@ msgstr "Удалить задачу"
 #: task_manager/templates/tasks_update.html:17
 msgid "Update tasks"
 msgstr "Обновить задачу"
+
+#: task_manager/templates/tasks_update.html:52
+#, fuzzy
+#| msgid "Change user"
+msgid "Change"
+msgstr "Изменить пользователя"
 
 #: task_manager/templates/update.html:16
 msgid "Change user"

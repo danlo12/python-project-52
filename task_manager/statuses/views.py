@@ -61,7 +61,7 @@ class StatusesDeleteView(DeleteView):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
-            messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
+            messages.error(request, gettext_lazy('Cannot delete status'))
             return redirect('login')
         if request.method == "POST":
             messages.success(request, gettext_lazy('Status successfully deleted'))
