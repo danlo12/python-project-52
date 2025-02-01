@@ -96,7 +96,7 @@ msgstr "Задача успешно изменена"
 
 #: task_manager/tasks/views.py:121
 msgid "You do not have permission to edit this task."
-msgstr "У вас нет разрешения на редактирование этой задачи."
+msgstr "Задачу может удалить только ее автор"
 
 #: task_manager/tasks/views.py:124
 msgid "Task successfully delete"
