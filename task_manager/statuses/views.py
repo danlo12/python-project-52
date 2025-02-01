@@ -61,9 +61,9 @@ class StatusesDeleteView(DeleteView):
 
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
-        if self.object.task_set.exists():
-            messages.error(request, gettext_lazy('Cannot delete status'))
-            return redirect('statuses')
         if request.method == "POST":
+            if self.object.task_set.exists():
+                messages.error(request, gettext_lazy('Cannot delete status'))
+                return redirect('statuses')
             messages.success(request, gettext_lazy('Status successfully deleted'))
         return super().dispatch(request, *args, **kwargs)
