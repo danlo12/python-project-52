@@ -350,7 +350,7 @@ msgstr "Полное имя"
 
 #: task_manager/users/views.py:23
 msgid "You do not have permission to edit another user."
-msgstr "У вас нет разрешения на редактирование другого пользователя"
+msgstr "У вас нет прав для изменения"
 
 #: task_manager/users/views.py:54
 msgid "User successfully registered."
