@@ -23,12 +23,12 @@
           <input type="text" name="name" maxlength="100" class="form-control" placeholder="{% trans 'Name' %}" required="" id="id_name" value="{{task.name}}">
         </div>
         <div class="mb-3">
-          <label class="form-label" for="description">{% trans 'Description' %}</label>
-          <textarea name="description" cols="40" rows="10" maxlength="500" class="form-control" placeholder="{% trans 'description' %}" required="" id="description">{{task.description}}</textarea>
+          <label class="form-label" for="id_description">{% trans 'Description' %}</label>
+          <textarea name="description" cols="40" rows="10" maxlength="500" class="form-control" placeholder="{% trans 'description' %}" required="" id="id_description">{{task.description}}</textarea>
         </div>
         <div class="mb-3">
-          <label class="form-label" for="status">{% trans 'Status' %}</label>
-          <select name="status" class="form-control" required="" id="status">
+          <label class="form-label" for="id_status">{% trans 'Status' %}</label>
+          <select name="status" class="form-control" required="" id="id_status">
               <option>-----------</option>
               {% for status in statuses %}
               <option value="{{ status.id }}"{%if status.id == task.status.id%}selected{% endif %}>{{status.name}}</option>
@@ -36,16 +36,16 @@
           </select>
         </div>
         <div class="mb-3">
-          <label class="form-label" for="performer">{% trans 'Performer' %}</label>
-          <select name="performer" class="form-control" required="" id="performer">
+          <label class="form-label" for="id_performer">{% trans 'Performer' %}</label>
+          <select name="performer" class="form-control" required="" id="id_performer">
               <option>-----------</option>
               {% for performer in performers %}
               <option value="{{ performer.id }}"{%if performer.id == task.performer.id%}selected{% endif %}>{{performer.username}}</option>
               {% endfor %}
           </select>
         </div>
-        <label class="form-label" for="labels">{% trans 'Label' %}</label>
-          <select name="labels" class="form-control" required="" id="labels" multiple>
+        <label class="form-label" for="id_labels">{% trans 'Label' %}</label>
+          <select name="labels" class="form-control" required="" id="id_labels" multiple>
               {% for label in labels %}
               <option value="{{ label.id }}"{%if label.id == task.label.id%}selected{% endif %}>{{label.name}}</option>
               {% endfor %}
