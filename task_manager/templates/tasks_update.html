@@ -36,8 +36,8 @@
           </select>
         </div>
         <div class="mb-3">
-          <label class="form-label" for="id_performer">{% trans 'Performer' %}</label>
-          <select name="performer" class="form-control" required="" id="id_performer">
+          <label class="form-label" for="id_executor">{% trans 'Performer' %}</label>
+          <select name="performer" class="form-control" required="" id="id_executor">
               <option>-----------</option>
               {% for performer in performers %}
               <option value="{{ performer.id }}"{%if performer.id == task.performer.id%}selected{% endif %}>{{performer.username}}</option>
