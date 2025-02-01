@@ -14,7 +14,7 @@
     {% include 'flash.html' %}
     <!-- Основной контент -->
     <div class="container mt-4">
-        <h1>{{task.status.id}}</h1>
+        <h1>{{performers.name}}</h1>
         <h1 class="my-4">{% trans 'Update tasks' %}</h1>
       <form action="{% url 'tasks_update' pk=task.id  %}" method="POST">
         {% csrf_token %}
@@ -40,7 +40,7 @@
           <select name="performer" class="form-control" required="" id="id_executor">
               <option>-----------</option>
               {% for performer in performers %}
-              <option value="{{ performer.id }}"{%if performer.id == task.performer.id%}selected{% endif %}>{{performer.username}}</option>
+              <option value="{{ performer.id }}"{%if performer.id == task.performer.id%}selected{% endif %}>{{performer.first_name}} {{performer.last_name}}</option>
               {% endfor %}
           </select>
         </div>
