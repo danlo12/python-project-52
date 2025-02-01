@@ -68,9 +68,9 @@ class LabelsDeleteView(DeleteView):
             messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
             return redirect('login')
         label = self.get_object()
-        if label.task_set.exists():
-            messages.error(request, gettext_lazy('Cannot delete label because it is associated with tasks.'))
-            return redirect('labels')
         if request.method == "POST":
+            if label.task_set.exists():
+                messages.error(request, gettext_lazy('Cannot delete label because it is associated with tasks.'))
+                return redirect('labels')
             messages.success(request, gettext_lazy('Label successfully delete'))
         return super().dispatch(request, *args, **kwargs)
