@@ -21,6 +21,7 @@ class LabelsListViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Active')
 
+
 class LabelsCreateViewTest(TestCase):
 
     def setUp(self):
@@ -34,6 +35,7 @@ class LabelsCreateViewTest(TestCase):
         self.assertEqual(response.status_code, 302)  # Статус 302, т.к. будет редирект на страницу списка
         self.assertRedirects(response, reverse('labels'))
         self.assertTrue(Label.objects.filter(name='New Label').exists())
+
 
 class LabelUpdateViewTest(TestCase):
 
@@ -51,6 +53,7 @@ class LabelUpdateViewTest(TestCase):
         self.label.refresh_from_db()
         self.assertEqual(self.label.name, 'Updated Label')
 
+
 class LabelDeleteViewTest(TestCase):
 
     def setUp(self):
@@ -65,4 +68,3 @@ class LabelDeleteViewTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('labels'))
         self.assertFalse(Status.objects.filter(name='Label to be deleted').exists())
-

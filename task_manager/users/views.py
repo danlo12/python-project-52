@@ -14,6 +14,7 @@ from .models import CustomUser
 
 logger = logging.getLogger(__name__)
 
+
 class UserPermissionMixin:
     def check_user_permission(self, user):
         if user.id != self.request.user.id:
@@ -22,6 +23,7 @@ class UserPermissionMixin:
                                         'permission to edit another user.'))
             return False
         return True
+
 
 class UserListView(ListView):
     model = CustomUser
@@ -33,6 +35,7 @@ class UserListView(ListView):
         context["authenticated_user_id"] = (
             self.request.user.id) if self.request.user.is_authenticated else None
         return context
+
 
 class UserCreateView(CreateView):
     model = CustomUser
@@ -77,8 +80,9 @@ class UserUpdateView(UpdateView, UserPermissionMixin):
         messages.success(self.request, gettext_lazy("User successfully changed"))
         user.save()
         return super().form_valid(form)
+
     def dispatch(self, request, *args, **kwargs):
-        user = get_object_or_404(CustomUser,id=self.kwargs['pk'])
+        user = get_object_or_404(CustomUser, id=self.kwargs['pk'])
 
         if not self.check_user_permission(user):
             return redirect('users')
@@ -88,6 +92,7 @@ class UserUpdateView(UpdateView, UserPermissionMixin):
     def get_object(self, queryset=None):
         return CustomUser.objects.get(id=self.kwargs['pk'])
 
+
 class UserDeleteView(DeleteView, UserPermissionMixin):
     model = CustomUser
     template_name = 'confirm_delete.html'
@@ -95,7 +100,7 @@ class UserDeleteView(DeleteView, UserPermissionMixin):
     success_url = reverse_lazy('users')
 
     def dispatch(self, request, *args, **kwargs):
-        user = get_object_or_404(CustomUser,id=self.kwargs['pk'])
+        user = get_object_or_404(CustomUser, id=self.kwargs['pk'])
 
         if not self.check_user_permission(user):
             return redirect('users')
@@ -103,5 +108,6 @@ class UserDeleteView(DeleteView, UserPermissionMixin):
             messages.success(self.request, gettext_lazy("User has been deleted "
                                                         "successfully."))
         return super().dispatch(request, *args, **kwargs)
+
     def delete(self, request, *args, **kwargs):
         return super().delete(request, *args, **kwargs)

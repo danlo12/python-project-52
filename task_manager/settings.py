@@ -33,7 +33,7 @@ ACCESS_TOKEN = os.getenv('ACCESS_TOKEN')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['webserver','127.0.0.1','tasks-manager-nahf.onrender.com']
+ALLOWED_HOSTS = ['webserver', '127.0.0.1', 'tasks-manager-nahf.onrender.com']
 
 
 # Application definition
@@ -99,7 +99,7 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL'),conn_max_age=600)
+        default=os.getenv('DATABASE_URL'), conn_max_age=600)
 }
 
 
@@ -121,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOCALE_PATHS = [ os.path.join(settings.BASE_DIR, 'locale')]
+LOCALE_PATHS = [os.path.join(settings.BASE_DIR, 'locale')]
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 

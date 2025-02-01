@@ -7,13 +7,13 @@ from task_manager.users.models import CustomUser
 
 class UserRegistrationTest(TestCase):
     def test_register_user(self):
-        response = self.client.post(reverse('user-create'),{
-            'first_name':'John',
-            'last_name':'Smith',
+        response = self.client.post(reverse('user-create'), {
+            'first_name': 'John',
+            'last_name': 'Smith',
             'username': 'newuser',
             'email': 'newuser@example.com',
             'password': 'TestPassword',
-            'password_check':'TestPassword',
+            'password_check': 'TestPassword',
         })
 
         self.assertEqual(response.status_code, 302)
@@ -29,8 +29,9 @@ class UserAuthTest(TestCase):
             username=self.username,
             password=self.password
         )
+
     def test_login_user(self):
-        response = self.client.post(reverse('login'),{
+        response = self.client.post(reverse('login'), {
             'username': self.username,
             'password': self.password
         })
@@ -42,6 +43,7 @@ class UserAuthTest(TestCase):
         response = self.client.post(reverse('logout'))
         self.assertEqual(response.status_code, 302)
         self.assertFalse(response.wsgi_request.user.is_authenticated)
+
 
 class UserUpdateTest(TestCase):
     def setUp(self):
@@ -56,7 +58,7 @@ class UserUpdateTest(TestCase):
         self.client.login(username=self.username, password=self.password)
 
     def test_update_user(self):
-        response = self.client.post(reverse('update',args=[self.user.id]), {
+        response = self.client.post(reverse('update', args=[self.user.id]), {
             'first_name': 'NewFirstName',
             'last_name': 'NewLastName',
             'username': self.username,
@@ -67,6 +69,7 @@ class UserUpdateTest(TestCase):
         self.user.refresh_from_db()
         self.assertEqual(self.user.first_name, 'NewFirstName')
         self.assertEqual(self.user.last_name, 'NewLastName')
+
 
 class UserDeleteTest(TestCase):
     def setUp(self):
@@ -81,6 +84,6 @@ class UserDeleteTest(TestCase):
         self.client.login(username=self.username, password=self.password)
 
     def test_delete_user(self):
-        response = self.client.post(reverse('delete_user',args=[self.user.id]))
+        response = self.client.post(reverse('delete_user', args=[self.user.id]))
         self.assertEqual(response.status_code, 302)
         self.assertFalse(get_user_model().objects.filter(id=self.user.id).exists())

@@ -15,17 +15,18 @@ from .models import CustomUser, Label, Status, Task
 logger = logging.getLogger(__name__)
 
 
-
 class TasksListView(ListView):
     model = Task
     template_name = 'tasks.html'
     context_object_name = 'tasks'
     filterset_class = TaskFilter
+
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
             return redirect('login')
         return super().dispatch(request, *args, **kwargs)
+
     def get_queryset(self):
         queryset = super().get_queryset()
 
@@ -46,12 +47,9 @@ class TasksListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-            # Добавляем данные для фильтров
         context['statuses'] = Task.objects.values_list('status__name', flat=True).distinct()
         context['performers'] = CustomUser.objects.all().distinct()
         context['labels'] = Label.objects.all()
-
-            # Передаем текущие фильтры в шаблон для сохранения состояния
         context['current_filters'] = {
             'status': self.request.GET.get('status', ''),
             'performer': self.request.GET.get('performer', ''),
@@ -60,12 +58,14 @@ class TasksListView(ListView):
         }
         return context
 
+
 class TasksCreateView(CreateView):
     model = Task
     template_name = 'tasks_create.html'
-    fields = ['name','description','status','performer','labels']
+    fields = ['name', 'description', 'status', 'performer', 'labels']
     context_object_name = 'tasks'
     success_url = reverse_lazy('tasks')
+
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
@@ -73,25 +73,27 @@ class TasksCreateView(CreateView):
         if request.method == "POST":
             messages.success(request, gettext_lazy('Task successfully create'))
         return super().dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['statuses'] = Status.objects.all()
         context['labels'] = Label.objects.all()
         context['performers'] = CustomUser.objects.all()
         return context
+
     def form_valid(self, form):
         form.instance.creator = self.request.user
         print(self.request.POST.getlist('labels'))
         return super().form_valid(form)
 
 
-
 class TasksUpdateView(UpdateView):
     model = Task
     template_name = 'tasks_update.html'
-    fields = ['name','description','status','performer','labels']
+    fields = ['name', 'description', 'status', 'performer', 'labels']
     context_object_name = 'task'
     success_url = reverse_lazy('tasks')
+
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
@@ -99,14 +101,16 @@ class TasksUpdateView(UpdateView):
         if request.method == "POST":
             messages.success(request, gettext_lazy('Task successfully update'))
         return super().dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         task = self.get_object()
         context['statuses'] = Status.objects.all()
         context['labels'] = Label.objects.all()
-        context['task_labels'] = list(task.labels.values_list('id' , flat='True'))
+        context['task_labels'] = list(task.labels.values_list('id', flat='True'))
         context['performers'] = CustomUser.objects.all()
         return context
+
 
 class TasksDeleteView(DeleteView):
     model = Task

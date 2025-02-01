@@ -10,15 +10,19 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .models import Status
 
 logger = logging.getLogger(__name__)
+
+
 class StatusesListView(ListView):
     model = Status
     template_name = 'statuses.html'
     context_object_name = 'statuses'
+
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
             return redirect('login')
         return super().dispatch(request, *args, **kwargs)
+
 
 class StatusesCreateView(CreateView):
     model = Status
@@ -26,6 +30,7 @@ class StatusesCreateView(CreateView):
     fields = ['name']
     context_object_name = 'statuses'
     success_url = reverse_lazy('statuses')
+
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
@@ -41,6 +46,7 @@ class StatusesUpdateView(UpdateView):
     fields = ['name']
     success_url = reverse_lazy('statuses')
     context_object_name = "status"
+
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
@@ -48,6 +54,7 @@ class StatusesUpdateView(UpdateView):
         if request.method == "POST":
             messages.success(request, gettext_lazy('Status successfully update'))
         return super().dispatch(request, *args, **kwargs)
+
 
 class StatusesDeleteView(DeleteView):
     model = Status

@@ -13,6 +13,7 @@ class UserRegistrationForm(UserCreationForm):
         model = CustomUser
         fields = ['username', 'first_name', 'last_name', 'password1', 'password2']
 
+
 class UserUpdateForm(forms.ModelForm):
     password1 = forms.CharField(widget=forms.PasswordInput(), required=False)
     password2 = forms.CharField(widget=forms.PasswordInput(), required=False)

@@ -20,6 +20,7 @@ class StatusesListViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Active')
 
+
 class StatusesCreateViewTest(TestCase):
 
     def setUp(self):
@@ -52,7 +53,6 @@ class StatusesUpdateViewTest(TestCase):
         self.assertEqual(self.status.name, 'Updated Status')
 
 
-
 class StatusesDeleteViewTest(TestCase):
 
     def setUp(self):
@@ -67,4 +67,3 @@ class StatusesDeleteViewTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('statuses'))
         self.assertFalse(Status.objects.filter(name='Status to be deleted').exists())
-
