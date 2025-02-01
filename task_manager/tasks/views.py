@@ -23,7 +23,8 @@ class TasksListView(ListView):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
-            messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
+            messages.error(request, gettext_lazy(
+                'You need to be logged in to perform this action.'))
             return redirect('login')
         return super().dispatch(request, *args, **kwargs)
 
@@ -47,7 +48,8 @@ class TasksListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['statuses'] = Task.objects.values_list('status__name', flat=True).distinct()
+        context['statuses'] = (
+            Task.objects.values_list('status__name', flat=True).distinct())
         context['performers'] = CustomUser.objects.all().distinct()
         context['labels'] = Label.objects.all()
         context['current_filters'] = {
@@ -68,7 +70,8 @@ class TasksCreateView(CreateView):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
-            messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
+            messages.error(request, gettext_lazy(
+                'You need to be logged in to perform this action.'))
             return redirect('login')
         if request.method == "POST":
             messages.success(request, gettext_lazy('Task successfully create'))
@@ -96,7 +99,8 @@ class TasksUpdateView(UpdateView):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
-            messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
+            messages.error(request, gettext_lazy(
+                'You need to be logged in to perform this action.'))
             return redirect('login')
         if request.method == "POST":
             messages.success(request, gettext_lazy('Task successfully update'))
@@ -107,7 +111,8 @@ class TasksUpdateView(UpdateView):
         task = self.get_object()
         context['statuses'] = Status.objects.all()
         context['labels'] = Label.objects.all()
-        context['task_labels'] = list(task.labels.values_list('id', flat='True'))
+        context['task_labels'] = (
+            list(task.labels.values_list('id', flat='True')))
         context['performers'] = CustomUser.objects.all()
         return context
 
@@ -120,7 +125,8 @@ class TasksDeleteView(DeleteView):
     def dispatch(self, request, *args, **kwargs):
         task = get_object_or_404(Task, id=self.kwargs['pk'])
         if task.creator.id != request.user.id:
-            messages.error(request, gettext_lazy('You do not have permission to edit this task.'))
+            messages.error(request, gettext_lazy(
+                'You do not have permission to edit this task.'))
             return redirect('tasks')
         if request.method == "POST":
             messages.success(request, gettext_lazy('Task successfully delete'))

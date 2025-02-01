@@ -19,7 +19,8 @@ class LabelsListView(ListView):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
-            messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
+            messages.error(request, gettext_lazy(
+                'You need to be logged in to perform this action.'))
             return redirect('login')
         return super().dispatch(request, *args, **kwargs)
 
@@ -33,16 +34,19 @@ class LabelsCreateView(CreateView):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
-            messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
+            messages.error(request, gettext_lazy(
+                'You need to be logged in to perform this action.'))
             return redirect('login')
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         name = form.cleaned_data['name']
         if Label.objects.filter(name=name).exists():
-            messages.error(self.request, gettext_lazy('Label with this name already exists.'))
+            messages.error(self.request, gettext_lazy(
+                'Label with this name already exists.'))
             return redirect('label_create')
-        messages.success(self.request, gettext_lazy('Label successfully create'))
+        messages.success(self.request, gettext_lazy(
+            'Label successfully create'))
         return super().form_valid(form)
 
 
@@ -55,7 +59,8 @@ class LabelsUpdateView(UpdateView):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
-            messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
+            messages.error(request, gettext_lazy(
+                'You need to be logged in to perform this action.'))
             return redirect('login')
         if request.method == "POST":
             messages.success(request, gettext_lazy('Label successfully update'))
@@ -69,12 +74,14 @@ class LabelsDeleteView(DeleteView):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
-            messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
+            messages.error(request, gettext_lazy(
+                'You need to be logged in to perform this action.'))
             return redirect('login')
         label = self.get_object()
         if request.method == "POST":
             if label.task_set.exists():
-                messages.error(request, gettext_lazy('Cannot delete label because it is associated with tasks.'))
+                messages.error(request, gettext_lazy(
+                    'Cannot delete label because it is associated with tasks.'))
                 return redirect('labels')
             messages.success(request, gettext_lazy('Label successfully delete'))
         return super().dispatch(request, *args, **kwargs)

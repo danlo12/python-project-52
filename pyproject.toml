@@ -29,8 +29,11 @@ ruff = "^0.9.4"
 select = ["E", "F", "W", "I", "E231"]
 src = ["."]
 preview = true
-line-length = 300
-
+line-length = 80
+exclude = [
+    "**/migrations/*",
+    "settings.py"
+]
 
 [build-system]
 requires = ["poetry-core"]

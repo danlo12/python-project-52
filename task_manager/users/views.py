@@ -33,7 +33,8 @@ class UserListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["authenticated_user_id"] = (
-            self.request.user.id) if self.request.user.is_authenticated else None
+            self.request.user.id) \
+            if self.request.user.is_authenticated else None
         return context
 
 
@@ -54,7 +55,8 @@ class UserCreateView(CreateView):
         user = form.save(commit=False)
         user.set_password(form.cleaned_data['password1'])
         user.save()
-        messages.success(self.request, gettext_lazy("User successfully registered."))
+        messages.success(self.request,
+                         gettext_lazy("User successfully registered."))
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -77,7 +79,8 @@ class UserUpdateView(UpdateView, UserPermissionMixin):
         password = form.cleaned_data.get('password1')
         if password:
             user.set_password(password)
-        messages.success(self.request, gettext_lazy("User successfully changed"))
+        (messages.success
+         (self.request, gettext_lazy("User successfully changed")))
         user.save()
         return super().form_valid(form)
 

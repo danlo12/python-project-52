@@ -9,8 +9,11 @@ class Task(models.Model):
     name = models.CharField(max_length=150)
     description = models.TextField()
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
-    performer = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, blank=True)
-    creator = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='created_tasks')
+    performer = models.ForeignKey(
+        CustomUser, on_delete=models.SET_NULL, null=True, blank=True)
+    creator = models.ForeignKey(CustomUser,
+                                on_delete=models.CASCADE,
+                                related_name='created_tasks')
     labels = models.ManyToManyField(Label, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

@@ -10,7 +10,8 @@ class LabelsListViewTest(TestCase):
 
     def setUp(self):
         # Создаем пользователя
-        self.user = get_user_model().objects.create_user(username='testuser', password='testpassword')
+        self.user = get_user_model().objects.create_user(
+            username='testuser', password='testpassword')
         self.label = Label.objects.create(name='Active')
         self.url = reverse('labels')
 
@@ -25,14 +26,15 @@ class LabelsListViewTest(TestCase):
 class LabelsCreateViewTest(TestCase):
 
     def setUp(self):
-        self.user = get_user_model().objects.create_user(username='testuser', password='testpassword')
+        self.user = get_user_model().objects.create_user(
+            username='testuser', password='testpassword')
         self.url = reverse('label_create')
 
     def test_create_label_authenticated(self):
         # Логинимся и создаем новый статус
         self.client.login(username='testuser', password='testpassword')
         response = self.client.post(self.url, {'name': 'New Label'})
-        self.assertEqual(response.status_code, 302)  # Статус 302, т.к. будет редирект на страницу списка
+        self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('labels'))
         self.assertTrue(Label.objects.filter(name='New Label').exists())
 
@@ -40,7 +42,8 @@ class LabelsCreateViewTest(TestCase):
 class LabelUpdateViewTest(TestCase):
 
     def setUp(self):
-        self.user = get_user_model().objects.create_user(username='testuser', password='testpassword')
+        self.user = get_user_model().objects.create_user(
+            username='testuser', password='testpassword')
         self.label = Label.objects.create(name='Old Label')
         self.url = reverse('label_update', args=[self.label.id])
 
@@ -57,7 +60,8 @@ class LabelUpdateViewTest(TestCase):
 class LabelDeleteViewTest(TestCase):
 
     def setUp(self):
-        self.user = get_user_model().objects.create_user(username='testuser', password='testpassword')
+        self.user = get_user_model().objects.create_user(
+            username='testuser', password='testpassword')
         self.label = Label.objects.create(name='Label to be deleted')
         self.url = reverse('label_delete', args=[self.label.id])
 
@@ -67,4 +71,5 @@ class LabelDeleteViewTest(TestCase):
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('labels'))
-        self.assertFalse(Status.objects.filter(name='Label to be deleted').exists())
+        self.assertFalse(
+            Status.objects.filter(name='Label to be deleted').exists())

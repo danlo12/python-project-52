@@ -11,7 +11,11 @@ class UserRegistrationForm(UserCreationForm):
 
     class Meta:
         model = CustomUser
-        fields = ['username', 'first_name', 'last_name', 'password1', 'password2']
+        fields = ['username',
+                  'first_name',
+                  'last_name',
+                  'password1',
+                  'password2']
 
 
 class UserUpdateForm(forms.ModelForm):
@@ -20,7 +24,11 @@ class UserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = CustomUser
-        fields = ['username', 'first_name', 'last_name', 'password1', 'password2']
+        fields = ['username',
+                  'first_name',
+                  'last_name',
+                  'password1',
+                  'password2']
 
     def clean(self):
         cleaned_data = super().clean()

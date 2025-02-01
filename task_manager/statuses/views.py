@@ -19,7 +19,9 @@ class StatusesListView(ListView):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
-            messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
+            messages.error(request,
+                           gettext_lazy(
+                           'You need to be logged in to perform this action.'))
             return redirect('login')
         return super().dispatch(request, *args, **kwargs)
 
@@ -33,10 +35,13 @@ class StatusesCreateView(CreateView):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
-            messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
+            messages.error(request,
+                           gettext_lazy(
+                           'You need to be logged in to perform this action.'))
             return redirect('login')
         if request.method == "POST":
-            messages.success(request, gettext_lazy('Status successfully create'))
+            messages.success(request,
+                             gettext_lazy('Status successfully create'))
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -49,10 +54,13 @@ class StatusesUpdateView(UpdateView):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
-            messages.error(request, gettext_lazy('You need to be logged in to perform this action.'))
+            messages.error(request,
+                           gettext_lazy(
+                        'You need to be logged in to perform this action.'))
             return redirect('login')
         if request.method == "POST":
-            messages.success(request, gettext_lazy('Status successfully update'))
+            messages.success(request,
+                             gettext_lazy('Status successfully update'))
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -67,5 +75,6 @@ class StatusesDeleteView(DeleteView):
             if self.object.task_set.exists():
                 messages.error(request, gettext_lazy('Cannot delete status'))
                 return redirect('statuses')
-            messages.success(request, gettext_lazy('Status successfully deleted'))
+            messages.success(request,
+                             gettext_lazy('Status successfully deleted'))
         return super().dispatch(request, *args, **kwargs)
