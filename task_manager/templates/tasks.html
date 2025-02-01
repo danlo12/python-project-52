@@ -17,7 +17,6 @@
 
     <!-- Основной контент -->
     {% include 'flash.html' %}
-    <h1>{{request.GET}}</h1>
     <div class="container wrapper flex grow-1">
     <h1 class="my-4">{% trans "Tasks" %}</h1>
         <a class="btn btn-primary mb-3" href="{% url 'tasks_create'%}">{% trans "Create task" %}</a>

@@ -14,7 +14,6 @@
     {% include 'flash.html' %}
     <!-- Основной контент -->
     <div class="container mt-4">
-        <h1>{{performers.name}}</h1>
         <h1 class="my-4">{% trans 'Update tasks' %}</h1>
       <form action="{% url 'tasks_update' pk=task.id  %}" method="POST">
         {% csrf_token %}
@@ -47,7 +46,7 @@
         <label class="form-label" for="id_labels">{% trans 'Label' %}</label>
           <select name="labels" class="form-control" required="" id="id_labels" multiple>
               {% for label in labels %}
-              <option value="{{ label.id }}"{%if label.id == task.label.id%}selected{% endif %}>{{label.name}}</option>
+              <option value="{{ label.id }}"{%if label.id in task_labels%}selected{% endif %}>{{label.name}}</option>
               {% endfor %}
           </select>
         <input class="btn btn-primary" type="submit" value="{% trans 'Create' %}">

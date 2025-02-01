@@ -102,8 +102,10 @@ class TasksUpdateView(UpdateView):
         return super().dispatch(request, *args, **kwargs)
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        task = self.get_object()
         context['statuses'] = Status.objects.all()
         context['labels'] = Label.objects.all()
+        context['task_labels'] = list(task.labels.values_list('id' , flat='True'))
         context['performers'] = CustomUser.objects.all()
         return context
 
