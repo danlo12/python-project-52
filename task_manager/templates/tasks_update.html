@@ -14,23 +14,24 @@
     {% include 'flash.html' %}
     <!-- Основной контент -->
     <div class="container mt-4">
+        <h1>{{task.status.id}}</h1>
         <h1 class="my-4">{% trans 'Update tasks' %}</h1>
-      <form action="{% url 'tasks_update' pk=tasks.id  %}" method="POST">
+      <form action="{% url 'tasks_update' pk=task.id  %}" method="POST">
         {% csrf_token %}
         <div class="mb-3">
           <label class="form-label" for="id_name">{% trans 'Name' %}</label>
-          <input type="text" name="name" maxlength="100" class="form-control" placeholder="{% trans 'Name' %}" required="" id="id_name">
+          <input type="text" name="name" maxlength="100" class="form-control" placeholder="{% trans 'Name' %}" required="" id="id_name" value="{{task.name}}">
         </div>
         <div class="mb-3">
           <label class="form-label" for="description">{% trans 'Description' %}</label>
-          <textarea name="description" cols="40" rows="10" maxlength="500" class="form-control" placeholder="{% trans 'description' %}" required="" id="description"></textarea>
+          <textarea name="description" cols="40" rows="10" maxlength="500" class="form-control" placeholder="{% trans 'description' %}" required="" id="description">{{task.description}}</textarea>
         </div>
         <div class="mb-3">
           <label class="form-label" for="status">{% trans 'Status' %}</label>
           <select name="status" class="form-control" required="" id="status">
               <option>-----------</option>
               {% for status in statuses %}
-              <option value="{{ status.id }}">{{status.name}}</option>
+              <option value="{{ status.id }}"{%if status.id == task.status.id%}selected{% endif %}>{{status.name}}</option>
               {% endfor %}
           </select>
         </div>
@@ -39,14 +40,14 @@
           <select name="performer" class="form-control" required="" id="performer">
               <option>-----------</option>
               {% for performer in performers %}
-              <option value="{{ performer.id }}">{{performer.username}}</option>
+              <option value="{{ performer.id }}"{%if performer.id == task.performer.id%}selected{% endif %}>{{performer.username}}</option>
               {% endfor %}
           </select>
         </div>
         <label class="form-label" for="labels">{% trans 'Label' %}</label>
           <select name="labels" class="form-control" required="" id="labels" multiple>
               {% for label in labels %}
-              <option value="{{ label.id }}">{{label.name}}</option>
+              <option value="{{ label.id }}"{%if label.id == task.label.id%}selected{% endif %}>{{label.name}}</option>
               {% endfor %}
           </select>
         <input class="btn btn-primary" type="submit" value="{% trans 'Create' %}">

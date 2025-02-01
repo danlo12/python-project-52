@@ -91,7 +91,7 @@ class TasksUpdateView(UpdateView):
     model = Task
     template_name = 'tasks_update.html'
     fields = ['name','description','status','performer','labels']
-    context_object_name = 'tasks'
+    context_object_name = 'task'
     success_url = reverse_lazy('tasks')
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
