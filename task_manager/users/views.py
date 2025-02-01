@@ -17,7 +17,9 @@ logger = logging.getLogger(__name__)
 class UserPermissionMixin:
     def check_user_permission(self, user):
         if user.id != self.request.user.id:
-            messages.error(self.request, gettext_lazy('You do not have permission to edit another user.'))
+            messages.error(self.request,
+                           gettext_lazy('You do not have '
+                                        'permission to edit another user.'))
             return False
         return True
 
@@ -28,7 +30,8 @@ class UserListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["authenticated_user_id"] = self.request.user.id if self.request.user.is_authenticated else None
+        context["authenticated_user_id"] = (
+            self.request.user.id) if self.request.user.is_authenticated else None
         return context
 
 class UserCreateView(CreateView):
@@ -97,7 +100,8 @@ class UserDeleteView(DeleteView, UserPermissionMixin):
         if not self.check_user_permission(user):
             return redirect('users')
         if request.method == "POST":
-            messages.success(self.request, gettext_lazy("User has been deleted successfully."))
+            messages.success(self.request, gettext_lazy("User has been deleted "
+                                                        "successfully."))
         return super().dispatch(request, *args, **kwargs)
     def delete(self, request, *args, **kwargs):
         return super().delete(request, *args, **kwargs)

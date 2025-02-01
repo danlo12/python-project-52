@@ -26,12 +26,9 @@ psycopg2-binary = "^2.9.10"
 ruff = "^0.9.4"
 
 [tool.ruff]
-select = ["E", "F", "I"]
+select = ["F", "I"]
 src = ["."]
-line-length = 300
-
-[tool.ruff.lint]
-select = ['E', 'W', 'I', 'C90']
+line-length = 100
 
 
 [build-system]
