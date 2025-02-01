@@ -1,16 +1,13 @@
+import logging
+
 from django.contrib import messages
-from django.contrib.auth.views import LoginView, LogoutView
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
 from django.views.generic import ListView
-from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-import logging
 
-from task_manager.filters import TaskFilter
 from .models import Label
-
 
 logger = logging.getLogger(__name__)
 

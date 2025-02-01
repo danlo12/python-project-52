@@ -1,17 +1,11 @@
-from django.contrib import messages
-from django.contrib.auth.views import LoginView, LogoutView
-from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse_lazy
-from django.utils.translation import gettext_lazy
-from django.views.generic import ListView
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
 import logging
 
-from .filters import TaskFilter
-from .users.forms import UserRegistrationForm, UserUpdateForm
-from .forms import CustomLoginForm
+from django.contrib import messages
+from django.contrib.auth.views import LoginView, LogoutView
+from django.shortcuts import render
+from django.urls import reverse_lazy
 
+from .forms import CustomLoginForm
 
 logger = logging.getLogger(__name__)
 

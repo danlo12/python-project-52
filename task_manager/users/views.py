@@ -1,19 +1,16 @@
+import logging
+
 from django.contrib import messages
-from django.contrib.auth.views import LoginView, LogoutView
-from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
 from django.views.generic import ListView
-from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.core.exceptions import ValidationError
-from django.contrib.auth.password_validation import validate_password
-import logging
 
-from task_manager.filters import TaskFilter
 from .forms import UserRegistrationForm, UserUpdateForm
 from .models import CustomUser
-
 
 logger = logging.getLogger(__name__)
 

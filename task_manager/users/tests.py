@@ -4,6 +4,7 @@ from django.urls import reverse
 
 from task_manager.users.models import CustomUser
 
+
 class UserRegistrationTest(TestCase):
     def test_register_user(self):
         response = self.client.post(reverse('user-create'),{
