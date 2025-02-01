@@ -60,9 +60,10 @@ class StatusesDeleteView(DeleteView):
     success_url = reverse_lazy('statuses')
 
     def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
+        self.object = self.get_object()
+        if self.object.task_set.exists():
             messages.error(request, gettext_lazy('Cannot delete status'))
-            return redirect('login')
+            return redirect('statuses')
         if request.method == "POST":
             messages.success(request, gettext_lazy('Status successfully deleted'))
         return super().dispatch(request, *args, **kwargs)
