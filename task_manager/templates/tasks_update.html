@@ -43,7 +43,7 @@
               {% endfor %}
           </select>
         </div>
-        <label class="form-label" for="id_labels">{% trans 'Label' %}</label>
+        <label class="form-label" for="id_labels">{% trans 'Labels' %}</label>
           <select name="labels" class="form-control" required="" id="id_labels" multiple>
               {% for label in labels %}
               <option value="{{ label.id }}"{%if label.id in task_labels%}selected{% endif %}>{{label.name}}</option>
