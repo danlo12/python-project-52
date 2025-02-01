@@ -116,10 +116,10 @@ class TasksDeleteView(DeleteView):
 
     def dispatch(self, request, *args, **kwargs):
         task = get_object_or_404(Task, id=self.kwargs['pk'])
+        if task.creator.id != request.user.id:
+            messages.error(request, gettext_lazy('You do not have permission to edit this task.'))
+            return redirect('tasks')
         if request.method == "POST":
-            if task.creator.id != request.user.id:
-                messages.error(request, gettext_lazy('You do not have permission to edit this task.'))
-                return redirect('tasks')
             messages.success(request, gettext_lazy('Task successfully delete'))
         return super().dispatch(request, *args, **kwargs)
 
