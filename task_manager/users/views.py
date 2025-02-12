@@ -9,14 +9,19 @@ from django.utils.translation import gettext_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib.auth.hashers import make_password
 from .forms import UserRegistrationForm, UserUpdateForm, CustomLoginForm
 from .models import CustomUser
-from .mixins import UserPermissionMixin
 logger = logging.getLogger(__name__)
 
 
-
+class UserPermissionMixin:
+    def check_user_permission(self, user):
+        if user.id != self.request.user.id:
+            messages.error(self.request,
+                           gettext_lazy('You do not have '
+                                        'permission to edit another user.'))
+            return False
+        return True
 
 
 class UserListView(ListView):
