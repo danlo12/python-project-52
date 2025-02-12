@@ -6,6 +6,8 @@ from task_manager.users.models import CustomUser
 
 
 class UserRegistrationTest(TestCase):
+    fixtures = ['user.json']
+    print(fixtures)
     def test_register_user(self):
         response = self.client.post(reverse('user-create'), {
             'first_name': 'John',
@@ -48,7 +50,7 @@ class UserAuthTest(TestCase):
 class UserUpdateTest(TestCase):
     def setUp(self):
         self.username = 'testuser'
-        self.password = 'TestPassword123'
+        self.password = 'TestPassword'
         self.user = get_user_model().objects.create_user(
             username=self.username,
             password=self.password,
@@ -74,7 +76,7 @@ class UserUpdateTest(TestCase):
 class UserDeleteTest(TestCase):
     def setUp(self):
         self.username = 'testuser'
-        self.password = 'TestPassword123'
+        self.password = 'TestPassword'
         self.user = get_user_model().objects.create_user(
             username=self.username,
             password=self.password,

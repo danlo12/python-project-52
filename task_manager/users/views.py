@@ -9,21 +9,13 @@ from django.utils.translation import gettext_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.views import LoginView, LogoutView
-
 from .forms import UserRegistrationForm, UserUpdateForm, CustomLoginForm
 from .models import CustomUser
-
+from .mixins import UserPermissionMixin
 logger = logging.getLogger(__name__)
 
 
-class UserPermissionMixin:
-    def check_user_permission(self, user):
-        if user.id != self.request.user.id:
-            messages.error(self.request,
-                           gettext_lazy('You do not have '
-                                        'permission to edit another user.'))
-            return False
-        return True
+
 
 
 class UserListView(ListView):
@@ -84,15 +76,6 @@ class UserUpdateView(UpdateView, UserPermissionMixin):
          (self.request, gettext_lazy("User successfully changed")))
         user.save()
         return super().form_valid(form)
-
-    def dispatch(self, request, *args, **kwargs):
-        user = get_object_or_404(CustomUser, id=self.kwargs['pk'])
-
-        if not self.check_user_permission(user):
-            return redirect('users')
-
-        return super().dispatch(request, *args, **kwargs)
-
     def get_object(self, queryset=None):
         return CustomUser.objects.get(id=self.kwargs['pk'])
 
@@ -104,14 +87,10 @@ class UserDeleteView(DeleteView, UserPermissionMixin):
     success_url = reverse_lazy('users')
 
     def dispatch(self, request, *args, **kwargs):
-        user = get_object_or_404(CustomUser, id=self.kwargs['pk'])
-
-        if not self.check_user_permission(user):
-            return redirect('users')
-        if request.method == "POST":
-            messages.success(self.request, gettext_lazy("User has been deleted "
-                                                        "successfully."))
-        return super().dispatch(request, *args, **kwargs)
+       response = super().dispatch(request,*args, **kwargs)
+       if request.method == "POST":
+           messages.success(self.request,gettext_lazy("User has been deleted successfully."))
+       return response
 
     def delete(self, request, *args, **kwargs):
         return super().delete(request, *args, **kwargs)

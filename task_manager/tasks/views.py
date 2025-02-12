@@ -8,7 +8,7 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
-from task_manager.filters import TaskFilter
+from task_manager.tasks.filters import TaskFilter
 
 from .models import CustomUser, Label, Status, Task
 
