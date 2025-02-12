@@ -1,6 +1,7 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy
 
 from .models import CustomUser
 
@@ -39,3 +40,18 @@ class UserUpdateForm(forms.ModelForm):
             raise ValidationError("Passwords do not match.")
 
         return cleaned_data
+
+class CustomLoginForm(AuthenticationForm):
+    username = forms.CharField(
+        max_length=150,
+        widget=forms.TextInput(
+            attrs={'class': 'form-control',
+                   'placeholder': gettext_lazy('Username'), 'label': "1"}),
+        label=gettext_lazy('Username')
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={'class': 'form-control',
+                   'placeholder': gettext_lazy('Password')}),
+        label=gettext_lazy('Password')
+    )

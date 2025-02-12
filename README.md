@@ -22,6 +22,6 @@ Deploy URL: https://tasks-manager-nahf.onrender.com
 
 ## Как использовать
 
-1. Перейдите на [Менеджер задач](https://python-i4-task-manager.herokuapp.com/tasks/).
+1. Перейдите на [Менеджер задач](https://tasks-manager-nahf.onrender.com).
 2. Создайте новую задачу, указав имя, статус, автора, исполнителя и метки.
 3. Используйте фильтры для поиска и управления задачами.

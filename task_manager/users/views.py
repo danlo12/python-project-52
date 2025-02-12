@@ -8,8 +8,9 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.contrib.auth.views import LoginView, LogoutView
 
-from .forms import UserRegistrationForm, UserUpdateForm
+from .forms import UserRegistrationForm, UserUpdateForm, CustomLoginForm
 from .models import CustomUser
 
 logger = logging.getLogger(__name__)
@@ -114,3 +115,25 @@ class UserDeleteView(DeleteView, UserPermissionMixin):
 
     def delete(self, request, *args, **kwargs):
         return super().delete(request, *args, **kwargs)
+
+class UserLoginView(LoginView):
+    template_name = 'login.html'
+    form_class = CustomLoginForm
+    success_url = reverse_lazy('home')
+
+    def form_invalid(self, form):
+        for field in form.errors:
+            for error in form.errors[field]:
+                messages.error(self.request, f"{error}")
+        return super().form_invalid(form)
+
+    def form_valid(self, form):
+        messages.success(self.request, "Вы залогинены")
+        return super().form_valid(form)
+
+
+class UserLogoutView(LogoutView):
+    def dispatch(self, request, *args, **kwargs):
+        messages.success(request, "Вы разлогинены")
+        return super().dispatch(request, *args, **kwargs)
+    next_page = reverse_lazy('home')
