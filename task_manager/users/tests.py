@@ -6,9 +6,6 @@ from task_manager.users.models import CustomUser
 
 
 class UserRegistrationTest(TestCase):
-    fixtures = ['user.json']
-    print(fixtures)
-
     def test_register_user(self):
         response = self.client.post(reverse('user-create'), {
             'first_name': 'John',

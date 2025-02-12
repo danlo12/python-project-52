@@ -29,6 +29,12 @@ class UserListView(ListView):
     template_name = 'users.html'
     context_object_name = 'users'
 
+    def dispatch(self, request, *args, **kwargs):
+        user = get_object_or_404(CustomUser, id=self.kwargs['pk'])
+        if not self.check_user_permission(user):
+            return redirect('users')
+        return super().dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["authenticated_user_id"] = (
