@@ -11,20 +11,16 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.views import LoginView, LogoutView
 from .forms import UserRegistrationForm, UserUpdateForm, CustomLoginForm
 from .models import CustomUser
-from .mixins import UserPermissionMixin
+from .mixins import UserDispatchMixin, UserPermissionMixin
 logger = logging.getLogger(__name__)
 
 
-class UserListView(ListView):
+
+
+class UserListView(ListView, UserDispatchMixin):
     model = CustomUser
     template_name = 'users.html'
     context_object_name = 'users'
-
-    def dispatch(self, request, *args, **kwargs):
-        user = get_object_or_404(CustomUser, id=self.kwargs['pk'])
-        if not self.check_user_permission(user):
-            return redirect('users')
-        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -62,7 +58,7 @@ class UserCreateView(CreateView):
         return super().form_invalid(form)
 
 
-class UserUpdateView(UpdateView, UserPermissionMixin):
+class UserUpdateView(UpdateView, UserPermissionMixin, UserDispatchMixin):
     model = CustomUser
     form_class = UserUpdateForm
     template_name = "update.html"
@@ -84,7 +80,7 @@ class UserUpdateView(UpdateView, UserPermissionMixin):
         return CustomUser.objects.get(id=self.kwargs['pk'])
 
 
-class UserDeleteView(DeleteView, UserPermissionMixin):
+class UserDeleteView(DeleteView, UserPermissionMixin, UserDispatchMixin):
     model = CustomUser
     template_name = 'confirm_delete.html'
     context_object_name = 'user'
