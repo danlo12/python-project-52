@@ -14,10 +14,8 @@ class UserPermissionMixin:
             return False
         return True
 
-class UserDispatchMixin:
     def dispatch(self, request, *args, **kwargs):
         user = get_object_or_404(CustomUser, id=self.kwargs['pk'])
-
         if not self.check_user_permission(user):
             return redirect('users')
 

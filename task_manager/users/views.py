@@ -11,13 +11,12 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.views import LoginView, LogoutView
 from .forms import UserRegistrationForm, UserUpdateForm, CustomLoginForm
 from .models import CustomUser
-from .mixins import UserDispatchMixin, UserPermissionMixin
+from .mixins import UserPermissionMixin
 logger = logging.getLogger(__name__)
 
 
 
-
-class UserListView(ListView, UserDispatchMixin):
+class UserListView(ListView):
     model = CustomUser
     template_name = 'users.html'
     context_object_name = 'users'
@@ -58,7 +57,7 @@ class UserCreateView(CreateView):
         return super().form_invalid(form)
 
 
-class UserUpdateView(UpdateView, UserPermissionMixin, UserDispatchMixin):
+class UserUpdateView(UserPermissionMixin,UpdateView):
     model = CustomUser
     form_class = UserUpdateForm
     template_name = "update.html"
@@ -80,20 +79,20 @@ class UserUpdateView(UpdateView, UserPermissionMixin, UserDispatchMixin):
         return CustomUser.objects.get(id=self.kwargs['pk'])
 
 
-class UserDeleteView(DeleteView, UserPermissionMixin):
+class UserDeleteView(UserPermissionMixin, DeleteView):
     model = CustomUser
     template_name = 'confirm_delete.html'
     context_object_name = 'user'
     success_url = reverse_lazy('users')
 
     def dispatch(self, request, *args, **kwargs):
-        user = get_object_or_404(CustomUser, id=self.kwargs['pk'])
-        if not self.check_user_permission(user):
-            return redirect('users')
+        response = super().dispatch(request, *args, **kwargs)
         if request.method == "POST":
-            messages.success(self.request, gettext_lazy("User has been deleted "
-                                                        "successfully."))
-        return super().dispatch(request, *args, **kwargs)
+            messages.success(self.request, gettext_lazy("User has been deleted successfully."))
+        return response
+
+    def delete(self, request, *args, **kwargs):
+        return super().delete(request, *args, **kwargs)
 
 class UserLoginView(LoginView):
     template_name = 'login.html'
