@@ -80,20 +80,20 @@ class UserUpdateView(UpdateView, UserPermissionMixin, UserDispatchMixin):
         return CustomUser.objects.get(id=self.kwargs['pk'])
 
 
-class UserDeleteView(DeleteView, UserPermissionMixin, UserDispatchMixin):
+class UserDeleteView(DeleteView, UserPermissionMixin):
     model = CustomUser
     template_name = 'confirm_delete.html'
     context_object_name = 'user'
     success_url = reverse_lazy('users')
 
     def dispatch(self, request, *args, **kwargs):
-        response = super().dispatch(request, *args, **kwargs)
+        user = get_object_or_404(CustomUser, id=self.kwargs['pk'])
+        if not self.check_user_permission(user):
+            return redirect('users')
         if request.method == "POST":
-            messages.success(self.request, gettext_lazy("User has been deleted successfully."))
-        return response
-
-    def delete(self, request, *args, **kwargs):
-        return super().delete(request, *args, **kwargs)
+            messages.success(self.request, gettext_lazy("User has been deleted "
+                                                        "successfully."))
+        return super().dispatch(request, *args, **kwargs)
 
 class UserLoginView(LoginView):
     template_name = 'login.html'
