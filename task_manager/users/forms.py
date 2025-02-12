@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy
 
@@ -40,6 +40,7 @@ class UserUpdateForm(forms.ModelForm):
             raise ValidationError("Passwords do not match.")
 
         return cleaned_data
+
 
 class CustomLoginForm(AuthenticationForm):
     username = forms.CharField(

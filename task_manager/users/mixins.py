@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import gettext_lazy
+
 from .models import CustomUser
 
 
@@ -12,6 +13,7 @@ class UserPermissionMixin:
                                         'permission to edit another user.'))
             return False
         return True
+
     def dispatch(self, request, *args, **kwargs):
         user = get_object_or_404(CustomUser, id=self.kwargs['pk'])
 

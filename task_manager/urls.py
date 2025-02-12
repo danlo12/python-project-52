@@ -18,7 +18,8 @@ from django.contrib import admin
 from django.urls import include, path
 
 from task_manager import views
-from task_manager.users.views import UserLogoutView, UserLoginView
+from task_manager.users.views import UserLoginView, UserLogoutView
+
 urlpatterns = [
     path('set-language/', set_language, name='set_language'),
     path('', views.index, name='home'),
