@@ -10,7 +10,6 @@ from task_manager.tasks.models import Task
 class TasksListViewTest(TestCase):
 
     def setUp(self):
-        # Создаем пользователя
         self.user = (
             get_user_model().objects.create_user(
                 username='testuser', password='testpassword'))

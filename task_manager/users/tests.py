@@ -1,34 +1,34 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
-
+from django.core.management import call_command
 from task_manager.users.models import CustomUser
 
+#Если я правильно все понял и реализовал, то в следующей итерации переработаю все остальные тесты
 
 class UserRegistrationTest(TestCase):
     def test_register_user(self):
         response = self.client.post(reverse('user-create'), {
             'first_name': 'John',
-            'last_name': 'Smith',
-            'username': 'newuser',
-            'email': 'newuser@example.com',
-            'password': 'TestPassword',
-            'password_check': 'TestPassword',
+            'last_name': 'Doe',
+            'username': 'testuser',
+            'password1': 'testpassword',
+            'password2': 'testpassword',
         })
-
         self.assertEqual(response.status_code, 302)
-
-        self.assertTrue(CustomUser.objects.filter(username='newuser').exists())
+        self.assertTrue(CustomUser.objects.filter(username='testuser').exists())
 
 
 class UserAuthTest(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        call_command('loaddata', 'users.json', verbosity=0)
+
     def setUp(self):
+        self.user = CustomUser.objects.get(username='testuser')
         self.username = 'testuser'
         self.password = 'testpassword'
-        self.user = get_user_model().objects.create_user(
-            username=self.username,
-            password=self.password
-        )
 
     def test_login_user(self):
         response = self.client.post(reverse('login'), {
@@ -46,15 +46,15 @@ class UserAuthTest(TestCase):
 
 
 class UserUpdateTest(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        call_command('loaddata', 'users.json', verbosity=0)
+
     def setUp(self):
+        self.user = CustomUser.objects.get(username='testuser')
         self.username = 'testuser'
-        self.password = 'TestPassword'
-        self.user = get_user_model().objects.create_user(
-            username=self.username,
-            password=self.password,
-            first_name='OldFirstName',
-            last_name='OldLastName'
-        )
+        self.password = 'testpassword'
         self.client.login(username=self.username, password=self.password)
 
     def test_update_user(self):
@@ -72,18 +72,18 @@ class UserUpdateTest(TestCase):
 
 
 class UserDeleteTest(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        call_command('loaddata', 'users.json', verbosity=0)
+
     def setUp(self):
+        self.user = CustomUser.objects.get(username='testuser')
         self.username = 'testuser'
-        self.password = 'TestPassword'
-        self.user = get_user_model().objects.create_user(
-            username=self.username,
-            password=self.password,
-            first_name='OldFirstName',
-            last_name='OldLastName'
-        )
+        self.password = 'testpassword'
         self.client.login(username=self.username, password=self.password)
 
     def test_delete_user(self):
         response = self.client.post(reverse('delete_user', args=[self.user.id]))
         self.assertEqual(response.status_code, 302)
-        self.assertFalse(get_user_model().objects.filter(id=self.user.id).exists())
+        self.assertFalse(CustomUser.objects.filter(id=self.user.id).exists())

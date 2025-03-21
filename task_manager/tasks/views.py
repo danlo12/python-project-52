@@ -7,6 +7,7 @@ from django.utils.translation import gettext_lazy
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from task_manager.tasks.filters import TaskFilter
 
@@ -15,18 +16,17 @@ from .models import CustomUser, Label, Status, Task
 logger = logging.getLogger(__name__)
 
 
-class TasksListView(ListView):
+class TasksListView(LoginRequiredMixin, ListView):
     model = Task
     template_name = 'tasks.html'
     context_object_name = 'tasks'
     filterset_class = TaskFilter
+    login_url = "/login"
 
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            messages.error(request, gettext_lazy(
-                'You need to be logged in to perform this action.'))
-            return redirect('login')
-        return super().dispatch(request, *args, **kwargs)
+    def handle_no_permission(self):
+        messages.error(self.request, gettext_lazy(
+            'You need to be logged in to perform this action.'))
+        return super().handle_no_permission()
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -61,18 +61,20 @@ class TasksListView(ListView):
         return context
 
 
-class TasksCreateView(CreateView):
+class TasksCreateView(LoginRequiredMixin, CreateView):
     model = Task
     template_name = 'tasks_create.html'
     fields = ['name', 'description', 'status', 'performer', 'labels']
     context_object_name = 'tasks'
     success_url = reverse_lazy('tasks')
+    login_url = "/login"
+
+    def handle_no_permission(self):
+        messages.error(self.request, gettext_lazy(
+            'You need to be logged in to perform this action.'))
+        return super().handle_no_permission()
 
     def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            messages.error(request, gettext_lazy(
-                'You need to be logged in to perform this action.'))
-            return redirect('login')
         if request.method == "POST":
             messages.success(request, gettext_lazy('Task successfully create'))
         return super().dispatch(request, *args, **kwargs)
@@ -90,18 +92,20 @@ class TasksCreateView(CreateView):
         return super().form_valid(form)
 
 
-class TasksUpdateView(UpdateView):
+class TasksUpdateView(LoginRequiredMixin, UpdateView):
     model = Task
     template_name = 'tasks_update.html'
     fields = ['name', 'description', 'status', 'performer', 'labels']
     context_object_name = 'task'
     success_url = reverse_lazy('tasks')
+    login_url = "/login"
+
+    def handle_no_permission(self):
+        messages.error(self.request, gettext_lazy(
+            'You need to be logged in to perform this action.'))
+        return super().handle_no_permission()
 
     def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            messages.error(request, gettext_lazy(
-                'You need to be logged in to perform this action.'))
-            return redirect('login')
         if request.method == "POST":
             messages.success(request, gettext_lazy('Task successfully update'))
         return super().dispatch(request, *args, **kwargs)
@@ -117,17 +121,18 @@ class TasksUpdateView(UpdateView):
         return context
 
 
-class TasksDeleteView(DeleteView):
+class TasksDeleteView(LoginRequiredMixin, DeleteView):
     model = Task
     template_name = 'tasks_delete.html'
     success_url = reverse_lazy('tasks')
+    login_url = "/login"
+
+    def handle_no_permission(self):
+        messages.error(self.request, gettext_lazy(
+            'You need to be logged in to perform this action.'))
+        return super().handle_no_permission()
 
     def dispatch(self, request, *args, **kwargs):
-        task = get_object_or_404(Task, id=self.kwargs['pk'])
-        if task.creator.id != request.user.id:
-            messages.error(request, gettext_lazy(
-                'You do not have permission to edit this task.'))
-            return redirect('tasks')
         if request.method == "POST":
             messages.success(request, gettext_lazy('Task successfully delete'))
         return super().dispatch(request, *args, **kwargs)
