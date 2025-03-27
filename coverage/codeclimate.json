@@ -1,0 +1,454 @@
+{
+  "ci_service": {
+    "branch": "main",
+    "build_identifier": "",
+    "build_url": "",
+    "commit_sha": "66928e82ab6099bb84e50947887067c54b0c4668",
+    "committed_at": 1742567374,
+    "name": ""
+  },
+  "environment": {
+    "gem_version": "",
+    "package_version": "",
+    "pwd": "/home/danlo/PycharmProjects/pythonProject/python-project-52",
+    "prefix": "/home/danlo/PycharmProjects/pythonProject/python-project-52",
+    "rails_root": "",
+    "reporter_version": "0.11.1",
+    "simplecov_root": ""
+  },
+  "git": {
+    "branch": "main",
+    "head": "66928e82ab6099bb84e50947887067c54b0c4668",
+    "committed_at": 1742567374
+  },
+  "covered_percent": 88.37876614060258,
+  "covered_strength": 0,
+  "line_counts": {
+    "missed": 81,
+    "covered": 616,
+    "total": 697
+  },
+  "source_files": [
+    {
+      "blob_id": "2fd24ea811a50d7f577a5e5751cb7525dab68650",
+      "coverage": "[1,null,null,1,1,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 4,
+        "total": 4
+      },
+      "name": "task_manager/labels/apps.py"
+    },
+    {
+      "blob_id": "0af64731161bd0c81b076bd08c2ed462bda0ed0f",
+      "coverage": "[1,null,null,1,1,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 4,
+        "total": 4
+      },
+      "name": "task_manager/labels/models.py"
+    },
+    {
+      "blob_id": "8cd75c73ee42e77fd87b1294d5e16b81c2146120",
+      "coverage": "[1,1,1,1,null,1,null,null,1,1,1,null,1,1,1,null,null,null,null,null,null,1,1,1,null,1,1,1,null,null,null,null,null,1,1,1,1,null,1,0,null,1,null,null,1,1,null,null,null,null,null,null,1]",
+      "covered_percent": 96.29629629629629,
+      "covered_strength": 0.9629629629629629,
+      "line_counts": {
+        "missed": 1,
+        "covered": 26,
+        "total": 27
+      },
+      "name": "task_manager/users/forms.py"
+    },
+    {
+      "blob_id": "b6cc4618804f131701a13af15bddad39412a25e1",
+      "coverage": "[1,null,null,1,1,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 4,
+        "total": 4
+      },
+      "name": "task_manager/users/apps.py"
+    },
+    {
+      "blob_id": "be362f19d7b024befbcca757af19fed91b9d825c",
+      "coverage": "[1,null,1,1,1,1,1,1,1,null,1,null,1,null,null,1,1,1,1,1,null,1,0,null,0,null,null,1,1,1,1,1,1,1,null,1,0,null,0,null,1,1,1,0,null,0,1,null,1,null,null,1,1,1,1,1,1,1,null,1,0,null,0,null,null,1,1,1,1,1,null,1,0,null,0,null,1,1,1,1,0,null,0,1,1]",
+      "covered_percent": 80.32786885245902,
+      "covered_strength": 0.8032786885245902,
+      "line_counts": {
+        "missed": 12,
+        "covered": 49,
+        "total": 61
+      },
+      "name": "task_manager/labels/views.py"
+    },
+    {
+      "blob_id": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "coverage": "[]",
+      "covered_percent": 0,
+      "covered_strength": 0,
+      "line_counts": {
+        "missed": 0,
+        "covered": 0,
+        "total": 0
+      },
+      "name": "task_manager/labels/__init__.py"
+    },
+    {
+      "blob_id": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "coverage": "[]",
+      "covered_percent": 0,
+      "covered_strength": 0,
+      "line_counts": {
+        "missed": 0,
+        "covered": 0,
+        "total": 0
+      },
+      "name": "task_manager/statuses/__init__.py"
+    },
+    {
+      "blob_id": "63cfa7f444e1029128c5c166de2eea0b2931e01e",
+      "coverage": "[1,1,null,1,null,null,1,1,1,1,1,null,null,1,0,0,0,0,null,1,1,1]",
+      "covered_percent": 75,
+      "covered_strength": 0.75,
+      "line_counts": {
+        "missed": 4,
+        "covered": 12,
+        "total": 16
+      },
+      "name": "task_manager/tasks/filters.py"
+    },
+    {
+      "blob_id": "074ba9df7f57bb2bd70ab4a2af9cd8ef58152a26",
+      "coverage": "[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,1,1,null,1,1,null,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 6,
+        "total": 6
+      },
+      "name": "task_manager/urls.py"
+    },
+    {
+      "blob_id": "10d56bd3c5133b016b2767b5a5b93c50c2c8e823",
+      "coverage": "[1,null,null,1,1,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 4,
+        "total": 4
+      },
+      "name": "task_manager/statuses/models.py"
+    },
+    {
+      "blob_id": "ba5590fd4875e9f447932e6ab6c4d88ed803fbe1",
+      "coverage": "[1,1,1,null,1,null,null,1,null,1,null,1,null,1,1,null,1,null,1,1,1,1,null,null,1,null,1,1,null,1,null,1,null,1,1,1,1,1,null,null,1,null,1,1,null,1,1,null,1,null,1,1,1,1,1,1,null,null,1,null,1,1,null,1,1,null,1,null,1,1,1,1,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 47,
+        "total": 47
+      },
+      "name": "task_manager/statuses/tests.py"
+    },
+    {
+      "blob_id": "6a0dce8e2f72715e67c97ab5e798a2e89f5a4581",
+      "coverage": "[1,1,1,null,1,1,1,null,null,1,null,1,1,null,null,1,1,1,null,null,null,null,1,1,null,1,null,1,1,1,1,null,null,1,null,1,1,null,1,1,1,null,null,null,null,1,1,null,1,1,1,null,null,null,null,null,1,1,1,null,null,1,null,1,1,null,1,1,1,null,null,null,null,null,1,1,null,1,null,1,1,null,null,null,null,1,1,1,1,null,null,1,null,1,1,null,1,1,1,null,null,null,null,null,1,1,null,1,null,1,null,1,1,1,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 62,
+        "total": 62
+      },
+      "name": "task_manager/tasks/tests.py"
+    },
+    {
+      "blob_id": "4e8f91ac6072b6358a28ca384e758fcc42257265",
+      "coverage": "[1,1,null,null,1,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 4,
+        "total": 4
+      },
+      "name": "task_manager/users/models.py"
+    },
+    {
+      "blob_id": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "coverage": "[]",
+      "covered_percent": 0,
+      "covered_strength": 0,
+      "line_counts": {
+        "missed": 0,
+        "covered": 0,
+        "total": 0
+      },
+      "name": "__init__.py"
+    },
+    {
+      "blob_id": "a463db2f33afa34f265fdce3d5a958adda29bbd1",
+      "coverage": "[1,null,null,1,1,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 4,
+        "total": 4
+      },
+      "name": "task_manager/tasks/apps.py"
+    },
+    {
+      "blob_id": "44b4c02360f561d4f62426a6240979cf3247d6cd",
+      "coverage": "[1,1,1,null,1,null,null,1,1,1,0,null,null,0,1,null,1,1,1,0,null,1]",
+      "covered_percent": 80,
+      "covered_strength": 0.8,
+      "line_counts": {
+        "missed": 3,
+        "covered": 12,
+        "total": 15
+      },
+      "name": "task_manager/users/mixins.py"
+    },
+    {
+      "blob_id": "32cf491fa149b75b5032ffb1dbe4774725be890c",
+      "coverage": "[1,null,1,null,1,null,null,1,0]",
+      "covered_percent": 80,
+      "covered_strength": 0.8,
+      "line_counts": {
+        "missed": 1,
+        "covered": 4,
+        "total": 5
+      },
+      "name": "task_manager/views.py"
+    },
+    {
+      "blob_id": "539658d279b9231b53486e7aa40dcaffb5671c0e",
+      "coverage": "[null,null,null,null,null,null,null,null,null,0,null,0,null,0,null,0]",
+      "covered_percent": 0,
+      "covered_strength": 0,
+      "line_counts": {
+        "missed": 4,
+        "covered": 0,
+        "total": 4
+      },
+      "name": "task_manager/wsgi.py"
+    },
+    {
+      "blob_id": "dc7f3d324dacb6c03da131e996963890e30205d2",
+      "coverage": "[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,null,1,null,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 3,
+        "total": 3
+      },
+      "name": "task_manager/labels/urls.py"
+    },
+    {
+      "blob_id": "bb2d45efc96209c363522ba1bcff27c888ec8d55",
+      "coverage": "[1,null,1,1,1,1,1,1,1,1,null,1,null,1,null,1,null,null,1,1,1,1,1,1,null,1,0,null,0,null,1,1,null,1,1,1,1,null,1,0,1,0,1,0,1,0,1,null,1,1,1,null,1,1,1,null,null,null,null,null,1,null,null,1,1,1,1,1,1,1,null,1,0,null,0,null,1,1,1,1,null,1,0,0,0,0,0,null,1,1,1,1,null,null,1,1,1,1,1,1,1,null,1,0,null,0,null,1,1,1,1,null,1,0,0,0,0,0,null,0,0,null,null,1,1,1,1,1,null,1,0,null,0,null,1,1,1,1,null,null,1,1,1,1]",
+      "covered_percent": 77.14285714285715,
+      "covered_strength": 0.7714285714285715,
+      "line_counts": {
+        "missed": 24,
+        "covered": 81,
+        "total": 105
+      },
+      "name": "task_manager/tasks/views.py"
+    },
+    {
+      "blob_id": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "coverage": "[]",
+      "covered_percent": 0,
+      "covered_strength": 0,
+      "line_counts": {
+        "missed": 0,
+        "covered": 0,
+        "total": 0
+      },
+      "name": "task_manager/users/__init__.py"
+    },
+    {
+      "blob_id": "cd232be575d761c81f0633420b8e4325736b2ba4",
+      "coverage": "[1,null,1,null,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 3,
+        "total": 3
+      },
+      "name": "task_manager/admin.py"
+    },
+    {
+      "blob_id": "a9798e7f851375ca582e8ae8251ce1393ee9d790",
+      "coverage": "[null,null,1,1,null,null,1,null,1,1,1,0,0,null,null,null,null,1,null,null,1,1]",
+      "covered_percent": 81.81818181818183,
+      "covered_strength": 0.8181818181818182,
+      "line_counts": {
+        "missed": 2,
+        "covered": 9,
+        "total": 11
+      },
+      "name": "manage.py"
+    },
+    {
+      "blob_id": "82ee75edeffd86fbd2c5081260318355be24b15a",
+      "coverage": "[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,null,1,null,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 3,
+        "total": 3
+      },
+      "name": "task_manager/users/urls.py"
+    },
+    {
+      "blob_id": "16a25d9bb0f563bdbce5c41d5d8b7d98342bab22",
+      "coverage": "[null,null,null,null,null,null,null,null,null,null,null,null,1,1,null,1,1,1,null,null,1,null,null,null,null,null,null,1,null,1,1,1,null,1,null,1,null,null,null,null,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,null,null,null,null,null,null,null,null,null,null,null,1,null,null,null,null,null,null,1,null,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,null,null,null,null,null,1,null,null,null,null,null,null,null,null,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,null,null,null,1,null,1,null,1,null,1,null,1,null,null,1,null,null,null,null,null,null,null,1,null,null,null,null,1,null,1,null,1,1,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 33,
+        "total": 33
+      },
+      "name": "task_manager/settings.py"
+    },
+    {
+      "blob_id": "94915dae7032ee3e94372d529e1c61a2d045d639",
+      "coverage": "[1,1,1,null,1,1,null,null,1,null,1,null,1,null,1,1,null,1,null,1,1,1,1,null,null,1,null,1,1,null,1,null,1,null,1,1,1,1,1,null,null,1,null,1,1,null,1,1,null,1,null,1,1,1,1,1,1,null,null,1,null,1,1,null,1,1,null,1,null,1,1,1,1,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 48,
+        "total": 48
+      },
+      "name": "task_manager/labels/tests.py"
+    },
+    {
+      "blob_id": "f296c072d73025c9ae1e72a656f37650c1e2893f",
+      "coverage": "[1,null,null,1,1,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 4,
+        "total": 4
+      },
+      "name": "task_manager/statuses/apps.py"
+    },
+    {
+      "blob_id": "2e851a07d3864b5da4d630daee7872b5a078e70e",
+      "coverage": "[1,null,1,1,1,null,null,1,1,1,1,1,null,1,null,null,1,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 12,
+        "total": 12
+      },
+      "name": "task_manager/tasks/models.py"
+    },
+    {
+      "blob_id": "49179f2f039239ebd66c98ba6368e585765bbaa5",
+      "coverage": "[1,1,1,1,null,1,1,1,null,null,null,null,null,null,1,1,null,null,1,1,1,1,1,null,1,1,1,1,null,1,1,null,null,null,1,1,null,1,1,1,1,1,null,null,1,1,1,1,1,null,1,1,1,1,1,null,1,1,null,null,null,null,null,null,1,1,1,1,null,null,1,1,1,1,1,null,1,1,1,1,1,null,1,1,1,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 57,
+        "total": 57
+      },
+      "name": "task_manager/users/tests.py"
+    },
+    {
+      "blob_id": "218fccf2d0f42dd1da01df998a685c2df1b84e9e",
+      "coverage": "[null,null,null,null,null,null,null,null,null,0,null,0,null,0,null,0]",
+      "covered_percent": 0,
+      "covered_strength": 0,
+      "line_counts": {
+        "missed": 4,
+        "covered": 0,
+        "total": 4
+      },
+      "name": "task_manager/asgi.py"
+    },
+    {
+      "blob_id": "838bc9621505c60a33d8d77738ed43d4058ca217",
+      "coverage": "[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,null,1,null,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 3,
+        "total": 3
+      },
+      "name": "task_manager/statuses/urls.py"
+    },
+    {
+      "blob_id": "98a480fcbd307b8c065c96f44f3dda1e20844187",
+      "coverage": "[1,null,1,1,1,1,1,1,1,null,1,null,1,null,null,1,1,1,1,1,null,1,0,null,0,null,null,1,1,1,1,1,1,1,null,1,0,null,0,null,1,1,1,null,1,null,null,1,1,1,1,1,1,1,null,1,0,null,0,null,1,1,1,null,1,null,null,1,1,1,1,1,null,1,0,null,0,null,1,1,1,1,0,0,1,null,1]",
+      "covered_percent": 83.87096774193549,
+      "covered_strength": 0.8387096774193549,
+      "line_counts": {
+        "missed": 10,
+        "covered": 52,
+        "total": 62
+      },
+      "name": "task_manager/statuses/views.py"
+    },
+    {
+      "blob_id": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "coverage": "[]",
+      "covered_percent": 0,
+      "covered_strength": 0,
+      "line_counts": {
+        "missed": 0,
+        "covered": 0,
+        "total": 0
+      },
+      "name": "task_manager/tasks/__init__.py"
+    },
+    {
+      "blob_id": "45374343b236a49b024893da5f27c33940a4c879",
+      "coverage": "[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,null,1,null,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 3,
+        "total": 3
+      },
+      "name": "task_manager/tasks/urls.py"
+    },
+    {
+      "blob_id": "a79170f3f38ea8ba51188fc829d11cb478607240",
+      "coverage": "[1,null,1,1,1,1,1,1,1,1,null,1,1,1,1,null,1,null,null,1,1,1,1,null,1,0,0,null,null,0,null,null,1,1,1,1,1,1,1,1,1,0,0,0,0,null,1,1,1,1,null,1,0,0,0,0,null,null,1,1,1,1,1,1,1,1,1,null,1,1,0,1,1,null,1,1,null,null,1,1,1,1,1,1,null,1,1,1,1,1,null,1,0,0,0,0,null,null,1,1,1]",
+      "covered_percent": 79.74683544303798,
+      "covered_strength": 0.7974683544303798,
+      "line_counts": {
+        "missed": 16,
+        "covered": 63,
+        "total": 79
+      },
+      "name": "task_manager/users/views.py"
+    }
+  ],
+  "repo_token": "52d89d98b7ab796ef27907cb935f3de2e0720cd513284c44b567b0fecd1612fa"
+}

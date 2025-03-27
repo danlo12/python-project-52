@@ -1,6 +1,8 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/danlo12/python-project-52/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/danlo12/python-project-52/actions)
 <a href="https://codeclimate.com/github/danlo12/python-project-52/maintainability"><img src="https://api.codeclimate.com/v1/badges/4a5b0c873a16c196249f/maintainability" /></a>
+<a href="https://codeclimate.com/github/danlo12/python-project-52/test_coverage"><img src="https://api.codeclimate.com/v1/badges/4a5b0c873a16c196249f/test_coverage" /></a>
+
 Deploy URL: https://tasks-manager-nahf.onrender.com
 
 # Менеджер задач

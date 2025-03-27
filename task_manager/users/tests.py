@@ -1,20 +1,17 @@
-from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 from django.core.management import call_command
 from task_manager.users.models import CustomUser
-
-#Если я правильно все понял и реализовал, то в следующей итерации переработаю все остальные тесты
+import json
+from pathlib import Path
 
 class UserRegistrationTest(TestCase):
     def test_register_user(self):
-        response = self.client.post(reverse('user-create'), {
-            'first_name': 'John',
-            'last_name': 'Doe',
-            'username': 'testuser',
-            'password1': 'testpassword',
-            'password2': 'testpassword',
-        })
+        fixture_path = (Path(__file__).parent.parent / 'users' /
+                        'fixtures' /"registration_data.json")
+        with open(fixture_path, encoding='utf-8') as f:
+            data = json.load(f)
+        response = self.client.post(reverse('user-create'), data)
         self.assertEqual(response.status_code, 302)
         self.assertTrue(CustomUser.objects.filter(username='testuser').exists())
 

@@ -9,3 +9,6 @@ local:
 
 lint:
 	ruff check .
+
+test:
+	python manage.py test
