@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.core.management import call_command
+from django.contrib.messages import get_messages
 from task_manager.users.models import CustomUser
 import json
 from pathlib import Path
@@ -15,6 +16,11 @@ class UserRegistrationTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertTrue(CustomUser.objects.filter(username='testuser').exists())
 
+        if response.status_code == 302:
+            follow_response = self.client.get(response.url)
+            messages = list(get_messages(follow_response.wsgi_request))
+            self.assertEqual(len(messages), 1)
+            self.assertEqual(str(messages[0]), "Пользователь успешно зарегистрирован")
 
 class UserAuthTest(TestCase):
     @classmethod
@@ -34,6 +40,11 @@ class UserAuthTest(TestCase):
         })
         self.assertEqual(response.status_code, 302)
         self.assertTrue(response.wsgi_request.user.is_authenticated)
+        if response.status_code == 302:
+            follow_response = self.client.get(response.url)
+            messages = list(get_messages(follow_response.wsgi_request))
+            self.assertEqual(len(messages), 1)
+            self.assertEqual(str(messages[0]), "Вы залогинены")
 
     def test_logout_user(self):
         self.client.login(username=self.username, password=self.password)
@@ -66,6 +77,11 @@ class UserUpdateTest(TestCase):
         self.user.refresh_from_db()
         self.assertEqual(self.user.first_name, 'NewFirstName')
         self.assertEqual(self.user.last_name, 'NewLastName')
+        if response.status_code == 302:
+            follow_response = self.client.get(response.url)
+            messages = list(get_messages(follow_response.wsgi_request))
+            self.assertEqual(len(messages), 1)
+            self.assertEqual(str(messages[0]), "Пользователь успешно изменен")
 
 
 class UserDeleteTest(TestCase):
@@ -84,3 +100,8 @@ class UserDeleteTest(TestCase):
         response = self.client.post(reverse('delete_user', args=[self.user.id]))
         self.assertEqual(response.status_code, 302)
         self.assertFalse(CustomUser.objects.filter(id=self.user.id).exists())
+        if response.status_code == 302:
+            follow_response = self.client.get(response.url)
+            messages = list(get_messages(follow_response.wsgi_request))
+            self.assertEqual(len(messages), 1)
+            self.assertEqual(str(messages[0]), "Пользователь успешно удален")

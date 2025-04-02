@@ -1,22 +1,25 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
-
 from task_manager.labels.models import Label
 from task_manager.statuses.models import Status
-
+import json
+from pathlib import Path
 
 class LabelsListViewTest(TestCase):
 
     def setUp(self):
-        # Создаем пользователя
+        fixture_path = (Path(__file__).parent.parent / 'labels' /
+                            'fixtures' / "registration_data.json")
+        with open(fixture_path, encoding='utf-8') as f:
+            data = json.load(f)
+
         self.user = get_user_model().objects.create_user(
-            username='testuser', password='testpassword')
+            username=data["username"], password=data["password"])
         self.label = Label.objects.create(name='Active')
         self.url = reverse('labels')
 
     def test_labels_list_authenticated(self):
-        # Логинимся и проверяем, что страница статусов доступна
         self.client.login(username='testuser', password='testpassword')
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)

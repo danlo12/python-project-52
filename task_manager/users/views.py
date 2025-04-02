@@ -1,9 +1,7 @@
 import logging
 
 from django.contrib import messages
-from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.views import LoginView, LogoutView
-from django.core.exceptions import ValidationError
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
 from django.views.generic import ListView
@@ -36,18 +34,6 @@ class UserCreateView(SuccessMessageMixin, CreateView):
     template_name = 'user_create.html'
     success_url = reverse_lazy('login')
     success_message = gettext_lazy("User successfully registered.")
-    def form_valid(self, form):
-        try:
-            validate_password(form.cleaned_data['password1'])
-        except ValidationError as e:
-            for error in e:
-                messages.error(self.request, error)
-            return self.form_invalid(form)
-
-        user = form.save(commit=False)
-        user.set_password(form.cleaned_data['password1'])
-        user.save()
-        return super().form_valid(form)
 
     def form_invalid(self, form):
         for field, errors in form.errors.items():
@@ -63,15 +49,6 @@ class UserUpdateView(SuccessMessageMixin, UserPermissionMixin, UpdateView):
     context_object_name = 'user'
     success_url = reverse_lazy('users')
     success_message = gettext_lazy("User successfully changed")
-    def form_valid(self, form):
-        user = form.save(commit=False)
-
-        password = form.cleaned_data.get('password1')
-        if password:
-            user.set_password(password)
-        user.save()
-        return super().form_valid(form)
-
     def get_object(self, queryset=None):
         return CustomUser.objects.get(id=self.kwargs['pk'])
 
@@ -88,12 +65,6 @@ class UserLoginView(SuccessMessageMixin, LoginView):
     form_class = CustomLoginForm
     success_url = reverse_lazy('home')
     success_message = gettext_lazy("You are logged in")
-
-    def form_invalid(self, form):
-        for field in form.errors:
-            for error in form.errors[field]:
-                messages.error(self.request, f"{error}")
-        return super().form_invalid(form)
 
 
 class UserLogoutView(SuccessMessageMixin, LogoutView):
