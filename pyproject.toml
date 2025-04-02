@@ -3,8 +3,9 @@ name = "hexlet-code"
 version = "0.1.0"
 description = ""
 authors = ["danlo <danlo12@mail.ru>"]
-packages = [{include = "task_manager"}]
 readme = "README.md"
+
+packages = [{include = "task_manager"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
