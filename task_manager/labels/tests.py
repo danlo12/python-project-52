@@ -1,10 +1,13 @@
+import json
+from pathlib import Path
+
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
+
 from task_manager.labels.models import Label
 from task_manager.statuses.models import Status
-import json
-from pathlib import Path
+
 
 class LabelsListViewTest(TestCase):
 

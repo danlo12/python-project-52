@@ -2,6 +2,7 @@ import logging
 
 from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
 from django.views.generic import ListView
@@ -10,7 +11,6 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .forms import CustomLoginForm, UserRegistrationForm, UserUpdateForm
 from .mixins import UserPermissionMixin
 from .models import CustomUser
-from django.contrib.messages.views import SuccessMessageMixin
 
 logger = logging.getLogger(__name__)
 
@@ -49,6 +49,7 @@ class UserUpdateView(SuccessMessageMixin, UserPermissionMixin, UpdateView):
     context_object_name = 'user'
     success_url = reverse_lazy('users')
     success_message = gettext_lazy("User successfully changed")
+
     def get_object(self, queryset=None):
         return CustomUser.objects.get(id=self.kwargs['pk'])
 
@@ -59,6 +60,7 @@ class UserDeleteView(SuccessMessageMixin, UserPermissionMixin, DeleteView):
     context_object_name = 'user'
     success_url = reverse_lazy('users')
     success_message = gettext_lazy("User has been deleted successfully.")
+
 
 class UserLoginView(SuccessMessageMixin, LoginView):
     template_name = 'login.html'

@@ -1,15 +1,18 @@
-from django.test import TestCase
-from django.urls import reverse
-from django.core.management import call_command
-from django.contrib.messages import get_messages
-from task_manager.users.models import CustomUser
 import json
 from pathlib import Path
+
+from django.contrib.messages import get_messages
+from django.core.management import call_command
+from django.test import TestCase
+from django.urls import reverse
+
+from task_manager.users.models import CustomUser
+
 
 class UserRegistrationTest(TestCase):
     def test_register_user(self):
         fixture_path = (Path(__file__).parent.parent / 'users' /
-                        'fixtures' /"registration_data.json")
+                        'fixtures' / "registration_data.json")
         with open(fixture_path, encoding='utf-8') as f:
             data = json.load(f)
         response = self.client.post(reverse('user-create'), data)
@@ -20,7 +23,9 @@ class UserRegistrationTest(TestCase):
             follow_response = self.client.get(response.url)
             messages = list(get_messages(follow_response.wsgi_request))
             self.assertEqual(len(messages), 1)
-            self.assertEqual(str(messages[0]), "Пользователь успешно зарегистрирован")
+            self.assertEqual(str(messages[0]), "Пользователь успешно "
+                                               "зарегистрирован")
+
 
 class UserAuthTest(TestCase):
     @classmethod
