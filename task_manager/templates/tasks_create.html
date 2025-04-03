@@ -28,8 +28,8 @@
         </div>
         <div class="mb-3">
           <label class="form-label" for="status">{% trans 'Status' %}</label>
-          <select name="status" class="form-control" required="" id="status">
-              <option>-----------</option>
+          <select name="status" class="form-control" required id="status">
+              <option value="" selected disabled>-----------</option>
               {% for status in statuses %}
               <option value="{{ status.id }}">{{status.name}}</option>
               {% endfor %}
@@ -38,7 +38,7 @@
         <div class="mb-3">
           <label class="form-label" for="performer">{% trans 'Performer' %}</label>
           <select name="performer" class="form-control" id="performer">
-              <option>-----------</option>
+              <option value="" selected>-----------</option>
               {% for performer in performers %}
               <option value="{{ performer.id }}">{{performer.first_name}} {{performer.last_name}}</option>
               {% endfor %}
