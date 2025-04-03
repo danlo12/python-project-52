@@ -70,9 +70,8 @@ class UserLoginView(SuccessMessageMixin, LoginView):
 
 
 class UserLogoutView(SuccessMessageMixin, LogoutView):
-    success_url = reverse_lazy('home')
+    next_page = reverse_lazy('home')
 
     def dispatch(self, request, *args, **kwargs):
         messages.success(request, gettext_lazy("You are logged out"))
         return super().dispatch(request, *args, **kwargs)
-    success_message = gettext_lazy("You are logged out")
