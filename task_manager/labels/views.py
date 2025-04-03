@@ -67,9 +67,9 @@ class LabelsUpdateView(LoginRequiredMixin, UpdateView):
         if request.method == "POST":
             if label.task_set.exists():
                 messages.error(request, gettext_lazy(
-                    'Cannot delete label because it is associated with tasks.'))
+                    'Cannot update label because it is associated with tasks.'))
                 return redirect('labels')
-            messages.success(request, gettext_lazy('Label successfully delete'))
+            messages.success(request, gettext_lazy('Label successfully update'))
         return super().dispatch(request, *args, **kwargs)
 
 
