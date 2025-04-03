@@ -62,6 +62,17 @@ class LabelsUpdateView(LoginRequiredMixin, UpdateView):
             'You need to be logged in to perform this action.'))
         return super().handle_no_permission()
 
+    def dispatch(self, request, *args, **kwargs):
+        label = self.get_object()
+        if request.method == "POST":
+            if label.task_set.exists():
+                messages.error(request, gettext_lazy(
+                    'Cannot delete label because it is associated with tasks.'))
+                return redirect('labels')
+            messages.success(request, gettext_lazy('Label successfully delete'))
+        return super().dispatch(request, *args, **kwargs)
+
+
 
 class LabelsDeleteView(LoginRequiredMixin, DeleteView):
     model = Label
