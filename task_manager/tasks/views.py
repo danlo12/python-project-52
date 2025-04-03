@@ -2,7 +2,7 @@ import logging
 
 from django.shortcuts import redirect
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
 from django.views.generic import ListView
@@ -92,26 +92,24 @@ class TasksCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class TasksUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+class TasksUpdateView(LoginRequiredMixin, UpdateView):
     model = Task
     template_name = 'tasks_update.html'
     fields = ['name', 'description', 'status', 'performer', 'labels']
     context_object_name = 'task'
     success_url = reverse_lazy('tasks')
     login_url = "/login"
-    permission_required = 'tasks.update_task'
-    raise_exception = False
 
     def handle_no_permission(self):
-        if not self.request.user.is_authenticated:
-            messages.error(self.request, gettext_lazy(
-                'You need to be logged in to perform this action.'))
-            return super().handle_no_permission()
-        else:
-            messages.error(self.request, gettext_lazy('You do not have permission to update this task.'))
-            return redirect(self.success_url)
+        messages.error(self.request, gettext_lazy(
+            'You need to be logged in to perform this action.'))
+        return super().handle_no_permission()
 
     def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.object.creator != request.user:
+            messages.error(request,  gettext_lazy('You do not have permission to update this task.'))
+            return redirect(self.success_url)
         if request.method == "POST":
             messages.success(request, gettext_lazy('Task successfully update'))
         return super().dispatch(request, *args, **kwargs)
@@ -127,24 +125,22 @@ class TasksUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
         return context
 
 
-class TasksDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+class TasksDeleteView(LoginRequiredMixin, DeleteView):
     model = Task
     template_name = 'tasks_delete.html'
     success_url = reverse_lazy('tasks')
     login_url = "/login"
-    permission_required = 'tasks.delete_task'
-    raise_exception = False
 
     def handle_no_permission(self):
-        if not self.request.user.is_authenticated:
-            messages.error(self.request, gettext_lazy(
-                'You need to be logged in to perform this action.'))
-            return super().handle_no_permission()
-        else:
-            messages.error(self.request, gettext_lazy('You do not have permission to delete this task.'))
-            return redirect(self.success_url)
+        messages.error(self.request, gettext_lazy(
+            'You need to be logged in to perform this action.'))
+        return super().handle_no_permission()
 
     def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.object.creator != request.user:
+            messages.error(request,  gettext_lazy("You do not have permission to delete this task."))
+            return redirect(self.success_url)
         if request.method == "POST":
             messages.success(request, gettext_lazy('Task successfully delete'))
         return super().dispatch(request, *args, **kwargs)
