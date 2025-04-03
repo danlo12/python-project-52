@@ -1,8 +1,8 @@
 import logging
 
-from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
 from django.views.generic import ListView
@@ -108,7 +108,8 @@ class TasksUpdateView(LoginRequiredMixin, UpdateView):
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
         if self.object.creator != request.user:
-            messages.error(request,  gettext_lazy('You do not have permission to update this task.'))
+            messages.error(request, gettext_lazy('You do not '
+                            'have permission to update this task.'))
             return redirect(self.success_url)
         if request.method == "POST":
             messages.success(request, gettext_lazy('Task successfully update'))
@@ -139,7 +140,8 @@ class TasksDeleteView(LoginRequiredMixin, DeleteView):
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
         if self.object.creator != request.user:
-            messages.error(request,  gettext_lazy("You do not have permission to delete this task."))
+            messages.error(request, gettext_lazy("You do not "
+                        "have permission to delete this task."))
             return redirect(self.success_url)
         if request.method == "POST":
             messages.success(request, gettext_lazy('Task successfully delete'))

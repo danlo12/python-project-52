@@ -8,7 +8,7 @@ local:
 	python manage.py runserver
 
 lint:
-	ruff check .
+	ruff check . --fix
 
 test:
 	python manage.py test

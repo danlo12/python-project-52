@@ -73,7 +73,6 @@ class LabelsUpdateView(LoginRequiredMixin, UpdateView):
         return super().dispatch(request, *args, **kwargs)
 
 
-
 class LabelsDeleteView(LoginRequiredMixin, DeleteView):
     model = Label
     template_name = 'label_delete.html'
