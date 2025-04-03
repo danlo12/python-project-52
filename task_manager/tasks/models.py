@@ -6,7 +6,7 @@ from task_manager.users.models import CustomUser
 
 
 class Task(models.Model):
-    name = models.CharField(max_length=150)
+    name = models.CharField(max_length=150, unique=True)
     description = models.TextField()
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
     performer = models.ForeignKey(

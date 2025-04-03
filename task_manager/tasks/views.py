@@ -1,7 +1,8 @@
 import logging
 
+from django.shortcuts import redirect
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy
 from django.views.generic import ListView
@@ -91,18 +92,24 @@ class TasksCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class TasksUpdateView(LoginRequiredMixin, UpdateView):
+class TasksUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Task
     template_name = 'tasks_update.html'
     fields = ['name', 'description', 'status', 'performer', 'labels']
     context_object_name = 'task'
     success_url = reverse_lazy('tasks')
     login_url = "/login"
+    permission_required = 'tasks.update_task'
+    raise_exception = False
 
     def handle_no_permission(self):
-        messages.error(self.request, gettext_lazy(
-            'You need to be logged in to perform this action.'))
-        return super().handle_no_permission()
+        if not self.request.user.is_authenticated:
+            messages.error(self.request, gettext_lazy(
+                'You need to be logged in to perform this action.'))
+            return super().handle_no_permission()
+        else:
+            messages.error(self.request, gettext_lazy('You do not have permission to update this task.'))
+            return redirect(self.success_url)
 
     def dispatch(self, request, *args, **kwargs):
         if request.method == "POST":
@@ -120,16 +127,22 @@ class TasksUpdateView(LoginRequiredMixin, UpdateView):
         return context
 
 
-class TasksDeleteView(LoginRequiredMixin, DeleteView):
+class TasksDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Task
     template_name = 'tasks_delete.html'
     success_url = reverse_lazy('tasks')
     login_url = "/login"
+    permission_required = 'tasks.delete_task'
+    raise_exception = False
 
     def handle_no_permission(self):
-        messages.error(self.request, gettext_lazy(
-            'You need to be logged in to perform this action.'))
-        return super().handle_no_permission()
+        if not self.request.user.is_authenticated:
+            messages.error(self.request, gettext_lazy(
+                'You need to be logged in to perform this action.'))
+            return super().handle_no_permission()
+        else:
+            messages.error(self.request, gettext_lazy('You do not have permission to delete this task.'))
+            return redirect(self.success_url)
 
     def dispatch(self, request, *args, **kwargs):
         if request.method == "POST":

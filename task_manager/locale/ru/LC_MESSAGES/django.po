@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-03 17:34+0300\n"
+"POT-Creation-Date: 2025-04-03 22:14+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,8 +24,8 @@ msgstr ""
 #: task_manager/labels/views.py:62 task_manager/labels/views.py:85
 #: task_manager/statuses/views.py:24 task_manager/statuses/views.py:38
 #: task_manager/statuses/views.py:58 task_manager/statuses/views.py:76
-#: task_manager/tasks/views.py:27 task_manager/tasks/views.py:73
-#: task_manager/tasks/views.py:104 task_manager/tasks/views.py:131
+#: task_manager/tasks/views.py:28 task_manager/tasks/views.py:74
+#: task_manager/tasks/views.py:108 task_manager/tasks/views.py:141
 msgid "You need to be logged in to perform this action."
 msgstr "Вам необходимо войти в систему, чтобы выполнить это действие."
 
@@ -73,15 +73,23 @@ msgstr "Статус успешно удален"
 msgid "Only your tasks"
 msgstr "Только свои задачи"
 
-#: task_manager/tasks/views.py:78
+#: task_manager/tasks/views.py:79
 msgid "Task successfully create"
 msgstr "Задача успешно создана"
 
-#: task_manager/tasks/views.py:109
+#: task_manager/tasks/views.py:111
+msgid "You do not have permission to update this task."
+msgstr "Задачу может изменить только ее автор"
+
+#: task_manager/tasks/views.py:116
 msgid "Task successfully update"
 msgstr "Задача успешно изменена"
 
-#: task_manager/tasks/views.py:136
+#: task_manager/tasks/views.py:144
+msgid "You do not have permission to delete this task."
+msgstr "Задачу может удалить только ее автор"
+
+#: task_manager/tasks/views.py:149
 msgid "Task successfully delete"
 msgstr "Задача успешно удалена"
 
@@ -384,9 +392,6 @@ msgstr "Вы залогинены"
 #: task_manager/users/views.py:76
 msgid "You are logged out"
 msgstr "Вы разлогинены"
-
-#~ msgid "You do not have permission to edit this task."
-#~ msgstr "Задачу может удалить только ее автор"
 
 #~ msgid "Task"
 #~ msgstr "Задача"
